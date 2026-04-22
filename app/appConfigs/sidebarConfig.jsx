@@ -1,3 +1,5 @@
+import { hiveRoutes } from "../appConfigs/hiveRoutes";
+
 export const sidebarConfig = [
 
   // SEND MESSAGE
@@ -7,12 +9,12 @@ export const sidebarConfig = [
     icon: "fa fa-paper-plane",
     roles: [],
     items: [
-      { label: "Quick Send", href: (routes) => `${routes.cms}/messages/profile`, roles: [] },
-      { label: "Send SMS", href: (routes) => `${routes.cms}/messaging/send-sms`, roles: [] },
-      { label: "Send Email", href: (routes) => `${routes.cms}/messaging/send-email`, roles: [] },
-      { label: "Send WhatsApp", href: (routes) => `${routes.cms}/messaging/send-whatsapp`, roles: [] },
-      { label: "Bulk Messaging", href: (routes) => `${routes.cms}/messaging/bulk`, roles: [] },
-      { label: "Scheduled Messages", href: (routes) => `${routes.cms}/messaging/scheduled`, roles: [] },
+      { label: "Quick Send", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messages/profile`, roles: [] },
+      { label: "Send SMS", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messaging/send-sms`, roles: [] },
+      { label: "Send Email", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messaging/send-email`, roles: [] },
+      { label: "Send WhatsApp", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messaging/send-whatsapp`, roles: [] },
+      { label: "Bulk Messaging", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messaging/bulk`, roles: [] },
+      { label: "Scheduled Messages", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messaging/scheduled`, roles: [] },
     ],
   },
 
@@ -23,11 +25,11 @@ export const sidebarConfig = [
     icon: "fa fa-envelope",
     roles: [],
     items: [
-      { label: "All Messages", href: (routes) => `${routes.cms}/messages/list`, roles: [] },
-      { label: "Sent Messages", href: (routes) => `${routes.cms}/messages/list`, roles: [] },
-      { label: "Pending / Queue", href: (routes) => `${routes.cms}/messaging/pending`, roles: [] },
-      { label: "Failed Messages", href: (routes) => `${routes.cms}/messaging/failed`, roles: [] },
-      { label: "Read Status", href: (routes) => `${routes.cms}/messaging/read-status`, roles: [] },
+      { label: "All Messages", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messages/list`, roles: [] },
+      { label: "Sent Messages", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messages/list`, roles: [] },
+      { label: "Pending / Queue", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messaging/pending`, roles: [] },
+      { label: "Failed Messages", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messaging/failed`, roles: [] },
+      { label: "Read Status", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messaging/read-status`, roles: [] },
     ],
   },
 
@@ -38,8 +40,8 @@ export const sidebarConfig = [
     icon: "fa fa-clone",
     roles: [],
     items: [
-      { label: "All Templates", href: (routes) => `${routes.cms}/messagetemplates/list`, roles: [] },
-      { label: "Create Template", href: (routes) => `${routes.cms}/messagetemplates/profile`, roles: [] },
+      { label: "All Templates", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messagetemplates/list`, roles: [] },
+      { label: "Create Template", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/messagetemplates/profile`, roles: [] },
     ],
   },
 
@@ -50,9 +52,9 @@ export const sidebarConfig = [
     icon: "fa fa-users",
     roles: [],
     items: [
-      { label: "Client List", href: (routes) => `${routes.cms}/clients/list`, roles: [] },
-      { label: "Add Client", href: (routes) => `${routes.cms}/clients/profile`, roles: [] },
-      { label: "Import Contacts", href: (routes) => `${routes.cms}/clients/import`, roles: [] },
+      { label: "Client List", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/clients/list`, roles: [] },
+      { label: "Add Client", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/clients/profile`, roles: [] },
+      { label: "Import Contacts", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/clients/import`, roles: [] },
     ],
   },
 
@@ -63,10 +65,10 @@ export const sidebarConfig = [
     icon: "fa fa-bullhorn",
     roles: [],
     items: [
-      { label: "All Campaigns", href: (routes) => `${routes.cms}/campaigns/list`, roles: [] },
-      { label: "Create Campaign", href: (routes) => `${routes.cms}/campaigns/create`, roles: [] },
-      { label: "Campaign Analytics", href: (routes) => `${routes.cms}/campaigns/analytics`, roles: [] },
-      { label: "A/B Testing", href: (routes) => `${routes.cms}/campaigns/testing`, roles: [] },
+      { label: "All Campaigns", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/campaigns/list`, roles: [] },
+      { label: "Create Campaign", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/campaigns/create`, roles: [] },
+      { label: "Campaign Analytics", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/campaigns/analytics`, roles: [] },
+      { label: "A/B Testing", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/campaigns/testing`, roles: [] },
     ],
   },
 
@@ -77,10 +79,10 @@ export const sidebarConfig = [
     icon: "fa fa-lightbulb-o",
     roles: [],
     items: [
-      { label: "All Nudges", href: (routes) => `${routes.cms}/nudges/list`, roles: [] },
-      { label: "Create Nudge", href: (routes) => `${routes.cms}/nudges/create`, roles: [] },
-      { label: "Automated Nudges", href: (routes) => `${routes.cms}/nudges/automation`, roles: [] },
-      { label: "Revenue Suggestions", href: (routes) => `${routes.cms}/nudges/revenue`, roles: [] },
+      { label: "All Nudges", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudges/list`, roles: [] },
+      { label: "Create Nudge", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudges/create`, roles: [] },
+      { label: "Automated Nudges", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudges/automation`, roles: [] },
+      { label: "Revenue Suggestions", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudges/revenue`, roles: [] },
     ],
   },
 
@@ -91,10 +93,10 @@ export const sidebarConfig = [
     icon: "fa fa-bar-chart",
     roles: [],
     items: [
-      { label: "Message Reports", href: (routes) => `${routes.cms}/reports/messages`, roles: [] },
-      { label: "SMS Costs", href: (routes) => `${routes.cms}/reports/sms-costs`, roles: [] },
-      { label: "Delivery Rates", href: (routes) => `${routes.cms}/reports/delivery`, roles: [] },
-      { label: "Engagement", href: (routes) => `${routes.cms}/reports/engagement`, roles: [] },
+      { label: "Message Reports", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/reports/messages`, roles: [] },
+      { label: "SMS Costs", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/reports/sms-costs`, roles: [] },
+      { label: "Delivery Rates", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/reports/delivery`, roles: [] },
+      { label: "Engagement", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/reports/engagement`, roles: [] },
     ],
   },
 
@@ -105,10 +107,10 @@ export const sidebarConfig = [
     icon: "fa fa-cogs",
     roles: [],
     items: [
-      { label: "SMS Gateway", href: (routes) => `${routes.cms}/settings/sms`, roles: [] },
-      { label: "Email SMTP", href: (routes) => `${routes.cms}/settings/email`, roles: [] },
-      { label: "WhatsApp API", href: (routes) => `${routes.cms}/settings/whatsapp`, roles: [] },
-      { label: "Sender IDs", href: (routes) => `${routes.cms}/settings/sender-id`, roles: [] },
+      { label: "SMS Gateway", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/settings/sms`, roles: [] },
+      { label: "Email SMTP", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/settings/email`, roles: [] },
+      { label: "WhatsApp API", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/settings/whatsapp`, roles: [] },
+      { label: "Sender IDs", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/settings/sender-id`, roles: [] },
     ],
   },
 
