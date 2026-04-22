@@ -1,0 +1,137 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuel pumps API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/fuelpumps/fuelpumps": {
+            "get": {
+                "summary": "Get Fuel pumps",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Fuel pumps",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "fuel_station_id": {
+                                        "type": "string",
+                                        "description": "Fuel station id"
+                                    },
+                                    "pump_id": {
+                                        "type": "string",
+                                        "description": "Pump id"
+                                    },
+                                    "pump_name": {
+                                        "type": "string",
+                                        "description": "Pump name"
+                                    },
+                                    "manufacturer": {
+                                        "type": "string",
+                                        "description": "Manufacturer"
+                                    },
+                                    "model_number": {
+                                        "type": "string",
+                                        "description": "Model number"
+                                    },
+                                    "installation_date": {
+                                        "type": "string",
+                                        "description": "Installation date"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "created_on": {
+                                        "type": "string",
+                                        "description": "Created on"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Fuel pumps",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "fuel_station_id": {
+                                        "type": "string",
+                                        "description": "Fuel station id"
+                                    },
+                                    "pump_id": {
+                                        "type": "string",
+                                        "description": "Pump id"
+                                    },
+                                    "pump_name": {
+                                        "type": "string",
+                                        "description": "Pump name"
+                                    },
+                                    "manufacturer": {
+                                        "type": "string",
+                                        "description": "Manufacturer"
+                                    },
+                                    "model_number": {
+                                        "type": "string",
+                                        "description": "Model number"
+                                    },
+                                    "installation_date": {
+                                        "type": "string",
+                                        "description": "Installation date"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "created_on": {
+                                        "type": "string",
+                                        "description": "Created on"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Fuel pumps id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

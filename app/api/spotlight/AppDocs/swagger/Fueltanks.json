@@ -1,0 +1,145 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuel Tanks API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/tanks/fueltanks": {
+            "get": {
+                "summary": "Get Fuel Tanks",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Fuel Tanks",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "tank_name": {
+                                        "type": "string",
+                                        "description": "Tank name"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "capacity_liters": {
+                                        "type": "string",
+                                        "description": "Capacity liters"
+                                    },
+                                    "current_liters": {
+                                        "type": "string",
+                                        "description": "Current liters"
+                                    },
+                                    "min_threshold": {
+                                        "type": "string",
+                                        "description": "Min threshold"
+                                    },
+                                    "max_threshold": {
+                                        "type": "string",
+                                        "description": "Max threshold"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "site_location": {
+                                        "type": "string",
+                                        "description": "Site location"
+                                    },
+                                    "reg_date": {
+                                        "type": "string",
+                                        "description": "Reg date"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Fuel Tanks",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "tank_name": {
+                                        "type": "string",
+                                        "description": "Tank name"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "capacity_liters": {
+                                        "type": "string",
+                                        "description": "Capacity liters"
+                                    },
+                                    "current_liters": {
+                                        "type": "string",
+                                        "description": "Current liters"
+                                    },
+                                    "min_threshold": {
+                                        "type": "string",
+                                        "description": "Min threshold"
+                                    },
+                                    "max_threshold": {
+                                        "type": "string",
+                                        "description": "Max threshold"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "site_location": {
+                                        "type": "string",
+                                        "description": "Site location"
+                                    },
+                                    "reg_date": {
+                                        "type": "string",
+                                        "description": "Reg date"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Fuel Tanks id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

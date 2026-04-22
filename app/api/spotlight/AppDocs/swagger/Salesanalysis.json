@@ -1,0 +1,161 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sales Analysis API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/salesanalysis/salesanalysis": {
+            "get": {
+                "summary": "Get Sales Analysis",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Sales Analysis",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sales_date": {
+                                        "type": "string",
+                                        "description": "Sales date"
+                                    },
+                                    "station_id": {
+                                        "type": "string",
+                                        "description": "Station id"
+                                    },
+                                    "product_name": {
+                                        "type": "string",
+                                        "description": "Product name"
+                                    },
+                                    "nozzle_label": {
+                                        "type": "string",
+                                        "description": "Nozzle label"
+                                    },
+                                    "opening": {
+                                        "type": "string",
+                                        "description": "Opening"
+                                    },
+                                    "closing": {
+                                        "type": "string",
+                                        "description": "Closing"
+                                    },
+                                    "rate": {
+                                        "type": "string",
+                                        "description": "Rate"
+                                    },
+                                    "shift_code": {
+                                        "type": "string",
+                                        "description": "Shift code"
+                                    },
+                                    "attendant": {
+                                        "type": "string",
+                                        "description": "Attendant"
+                                    },
+                                    "product_code": {
+                                        "type": "string",
+                                        "description": "Product code"
+                                    },
+                                    "pump_name": {
+                                        "type": "string",
+                                        "description": "Pump name"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Sales Analysis",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sales_date": {
+                                        "type": "string",
+                                        "description": "Sales date"
+                                    },
+                                    "station_id": {
+                                        "type": "string",
+                                        "description": "Station id"
+                                    },
+                                    "product_name": {
+                                        "type": "string",
+                                        "description": "Product name"
+                                    },
+                                    "nozzle_label": {
+                                        "type": "string",
+                                        "description": "Nozzle label"
+                                    },
+                                    "opening": {
+                                        "type": "string",
+                                        "description": "Opening"
+                                    },
+                                    "closing": {
+                                        "type": "string",
+                                        "description": "Closing"
+                                    },
+                                    "rate": {
+                                        "type": "string",
+                                        "description": "Rate"
+                                    },
+                                    "shift_code": {
+                                        "type": "string",
+                                        "description": "Shift code"
+                                    },
+                                    "attendant": {
+                                        "type": "string",
+                                        "description": "Attendant"
+                                    },
+                                    "product_code": {
+                                        "type": "string",
+                                        "description": "Product code"
+                                    },
+                                    "pump_name": {
+                                        "type": "string",
+                                        "description": "Pump name"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Sales Analysis id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

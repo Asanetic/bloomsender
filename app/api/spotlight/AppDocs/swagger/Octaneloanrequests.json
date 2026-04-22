@@ -1,0 +1,249 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Octane loan requests API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/loanrequests/octaneloanrequests": {
+            "get": {
+                "summary": "Get Octane loan requests",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Octane loan requests",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "station_id": {
+                                        "type": "string",
+                                        "description": "Station id"
+                                    },
+                                    "created_at": {
+                                        "type": "string",
+                                        "description": "Created at"
+                                    },
+                                    "principal_amount": {
+                                        "type": "string",
+                                        "description": "Principal amount"
+                                    },
+                                    "interest_rate": {
+                                        "type": "string",
+                                        "description": "Interest rate"
+                                    },
+                                    "interest_amount": {
+                                        "type": "string",
+                                        "description": "Interest amount"
+                                    },
+                                    "total_repayable": {
+                                        "type": "string",
+                                        "description": "Total repayable"
+                                    },
+                                    "tenure_days": {
+                                        "type": "string",
+                                        "description": "Tenure days"
+                                    },
+                                    "send_to": {
+                                        "type": "string",
+                                        "description": "Send to"
+                                    },
+                                    "payment_type": {
+                                        "type": "string",
+                                        "description": "Payment type"
+                                    },
+                                    "recipient_name": {
+                                        "type": "string",
+                                        "description": "Recipient name"
+                                    },
+                                    "recipient_email": {
+                                        "type": "string",
+                                        "description": "Recipient email"
+                                    },
+                                    "recipient_phone": {
+                                        "type": "string",
+                                        "description": "Recipient phone"
+                                    },
+                                    "receiving_account_number": {
+                                        "type": "string",
+                                        "description": "Receiving account number"
+                                    },
+                                    "receiving_bank_name": {
+                                        "type": "string",
+                                        "description": "Receiving bank name"
+                                    },
+                                    "receiving_bank_code": {
+                                        "type": "string",
+                                        "description": "Receiving bank code"
+                                    },
+                                    "receiving_branch_name": {
+                                        "type": "string",
+                                        "description": "Receiving branch name"
+                                    },
+                                    "purpose": {
+                                        "type": "string",
+                                        "description": "Purpose"
+                                    },
+                                    "request_status": {
+                                        "type": "string",
+                                        "description": "Request status"
+                                    },
+                                    "approved_by": {
+                                        "type": "string",
+                                        "description": "Approved by"
+                                    },
+                                    "approval_date": {
+                                        "type": "string",
+                                        "description": "Approval date"
+                                    },
+                                    "rejection_reason": {
+                                        "type": "string",
+                                        "description": "Rejection reason"
+                                    },
+                                    "disbursement_txn_id": {
+                                        "type": "string",
+                                        "description": "Disbursement txn id"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Octane loan requests",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "station_id": {
+                                        "type": "string",
+                                        "description": "Station id"
+                                    },
+                                    "created_at": {
+                                        "type": "string",
+                                        "description": "Created at"
+                                    },
+                                    "principal_amount": {
+                                        "type": "string",
+                                        "description": "Principal amount"
+                                    },
+                                    "interest_rate": {
+                                        "type": "string",
+                                        "description": "Interest rate"
+                                    },
+                                    "interest_amount": {
+                                        "type": "string",
+                                        "description": "Interest amount"
+                                    },
+                                    "total_repayable": {
+                                        "type": "string",
+                                        "description": "Total repayable"
+                                    },
+                                    "tenure_days": {
+                                        "type": "string",
+                                        "description": "Tenure days"
+                                    },
+                                    "send_to": {
+                                        "type": "string",
+                                        "description": "Send to"
+                                    },
+                                    "payment_type": {
+                                        "type": "string",
+                                        "description": "Payment type"
+                                    },
+                                    "recipient_name": {
+                                        "type": "string",
+                                        "description": "Recipient name"
+                                    },
+                                    "recipient_email": {
+                                        "type": "string",
+                                        "description": "Recipient email"
+                                    },
+                                    "recipient_phone": {
+                                        "type": "string",
+                                        "description": "Recipient phone"
+                                    },
+                                    "receiving_account_number": {
+                                        "type": "string",
+                                        "description": "Receiving account number"
+                                    },
+                                    "receiving_bank_name": {
+                                        "type": "string",
+                                        "description": "Receiving bank name"
+                                    },
+                                    "receiving_bank_code": {
+                                        "type": "string",
+                                        "description": "Receiving bank code"
+                                    },
+                                    "receiving_branch_name": {
+                                        "type": "string",
+                                        "description": "Receiving branch name"
+                                    },
+                                    "purpose": {
+                                        "type": "string",
+                                        "description": "Purpose"
+                                    },
+                                    "request_status": {
+                                        "type": "string",
+                                        "description": "Request status"
+                                    },
+                                    "approved_by": {
+                                        "type": "string",
+                                        "description": "Approved by"
+                                    },
+                                    "approval_date": {
+                                        "type": "string",
+                                        "description": "Approval date"
+                                    },
+                                    "rejection_reason": {
+                                        "type": "string",
+                                        "description": "Rejection reason"
+                                    },
+                                    "disbursement_txn_id": {
+                                        "type": "string",
+                                        "description": "Disbursement txn id"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Octane loan requests id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

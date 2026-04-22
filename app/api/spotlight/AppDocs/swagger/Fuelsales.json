@@ -1,0 +1,185 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuel Sales API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/fuelsales/fuelsales": {
+            "get": {
+                "summary": "Get Fuel Sales",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Fuel Sales",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sale_date": {
+                                        "type": "string",
+                                        "description": "Sale date"
+                                    },
+                                    "pump": {
+                                        "type": "string",
+                                        "description": "Pump"
+                                    },
+                                    "pump_nozzle_id": {
+                                        "type": "string",
+                                        "description": "Pump nozzle id"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "quantity_sold_litres": {
+                                        "type": "string",
+                                        "description": "Quantity sold litres"
+                                    },
+                                    "sale_price_per_litre": {
+                                        "type": "string",
+                                        "description": "Sale price per litre"
+                                    },
+                                    "total_amount": {
+                                        "type": "string",
+                                        "description": "Total amount"
+                                    },
+                                    "total_paid": {
+                                        "type": "string",
+                                        "description": "Total paid"
+                                    },
+                                    "sold_by_staff_id": {
+                                        "type": "string",
+                                        "description": "Sold by staff id"
+                                    },
+                                    "shift_id": {
+                                        "type": "string",
+                                        "description": "Shift id"
+                                    },
+                                    "fuel_station_id": {
+                                        "type": "string",
+                                        "description": "Fuel station id"
+                                    },
+                                    "sale_method": {
+                                        "type": "string",
+                                        "description": "Sale method"
+                                    },
+                                    "vehicle_plate": {
+                                        "type": "string",
+                                        "description": "Vehicle plate"
+                                    },
+                                    "customer_id": {
+                                        "type": "string",
+                                        "description": "Customer id"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Fuel Sales",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sale_date": {
+                                        "type": "string",
+                                        "description": "Sale date"
+                                    },
+                                    "pump": {
+                                        "type": "string",
+                                        "description": "Pump"
+                                    },
+                                    "pump_nozzle_id": {
+                                        "type": "string",
+                                        "description": "Pump nozzle id"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "quantity_sold_litres": {
+                                        "type": "string",
+                                        "description": "Quantity sold litres"
+                                    },
+                                    "sale_price_per_litre": {
+                                        "type": "string",
+                                        "description": "Sale price per litre"
+                                    },
+                                    "total_amount": {
+                                        "type": "string",
+                                        "description": "Total amount"
+                                    },
+                                    "total_paid": {
+                                        "type": "string",
+                                        "description": "Total paid"
+                                    },
+                                    "sold_by_staff_id": {
+                                        "type": "string",
+                                        "description": "Sold by staff id"
+                                    },
+                                    "shift_id": {
+                                        "type": "string",
+                                        "description": "Shift id"
+                                    },
+                                    "fuel_station_id": {
+                                        "type": "string",
+                                        "description": "Fuel station id"
+                                    },
+                                    "sale_method": {
+                                        "type": "string",
+                                        "description": "Sale method"
+                                    },
+                                    "vehicle_plate": {
+                                        "type": "string",
+                                        "description": "Vehicle plate"
+                                    },
+                                    "customer_id": {
+                                        "type": "string",
+                                        "description": "Customer id"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Fuel Sales id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

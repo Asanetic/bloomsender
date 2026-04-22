@@ -1,0 +1,145 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuel pump nozzles API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/pumpnozzles/fuelpumpnozzles": {
+            "get": {
+                "summary": "Get Fuel pump nozzles",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Fuel pump nozzles",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "pump_id": {
+                                        "type": "string",
+                                        "description": "Pump id"
+                                    },
+                                    "nozzle_label": {
+                                        "type": "string",
+                                        "description": "Nozzle label"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "calibration_factor": {
+                                        "type": "string",
+                                        "description": "Calibration factor"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "installed_on": {
+                                        "type": "string",
+                                        "description": "Installed on"
+                                    },
+                                    "last_maintenance_date": {
+                                        "type": "string",
+                                        "description": "Last maintenance date"
+                                    },
+                                    "tank_reference": {
+                                        "type": "string",
+                                        "description": "Tank reference"
+                                    },
+                                    "created_on": {
+                                        "type": "string",
+                                        "description": "Created on"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Fuel pump nozzles",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "pump_id": {
+                                        "type": "string",
+                                        "description": "Pump id"
+                                    },
+                                    "nozzle_label": {
+                                        "type": "string",
+                                        "description": "Nozzle label"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "calibration_factor": {
+                                        "type": "string",
+                                        "description": "Calibration factor"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "installed_on": {
+                                        "type": "string",
+                                        "description": "Installed on"
+                                    },
+                                    "last_maintenance_date": {
+                                        "type": "string",
+                                        "description": "Last maintenance date"
+                                    },
+                                    "tank_reference": {
+                                        "type": "string",
+                                        "description": "Tank reference"
+                                    },
+                                    "created_on": {
+                                        "type": "string",
+                                        "description": "Created on"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Fuel pump nozzles id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

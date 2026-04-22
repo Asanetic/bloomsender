@@ -1,0 +1,145 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Telematics Logs API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/telematicslogs/telematicslogs": {
+            "get": {
+                "summary": "Get Telematics Logs",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Telematics Logs",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "device_id": {
+                                        "type": "string",
+                                        "description": "Device id"
+                                    },
+                                    "device_type": {
+                                        "type": "string",
+                                        "description": "Device type"
+                                    },
+                                    "reading_type": {
+                                        "type": "string",
+                                        "description": "Reading type"
+                                    },
+                                    "reading_value": {
+                                        "type": "string",
+                                        "description": "Reading value"
+                                    },
+                                    "device_timestamp": {
+                                        "type": "string",
+                                        "description": "Device timestamp"
+                                    },
+                                    "server_timestamp": {
+                                        "type": "string",
+                                        "description": "Server timestamp"
+                                    },
+                                    "remarks": {
+                                        "type": "string",
+                                        "description": "Remarks"
+                                    },
+                                    "raw_data": {
+                                        "type": "string",
+                                        "description": "Raw data"
+                                    },
+                                    "parsed_data": {
+                                        "type": "string",
+                                        "description": "Parsed data"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Telematics Logs",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "device_id": {
+                                        "type": "string",
+                                        "description": "Device id"
+                                    },
+                                    "device_type": {
+                                        "type": "string",
+                                        "description": "Device type"
+                                    },
+                                    "reading_type": {
+                                        "type": "string",
+                                        "description": "Reading type"
+                                    },
+                                    "reading_value": {
+                                        "type": "string",
+                                        "description": "Reading value"
+                                    },
+                                    "device_timestamp": {
+                                        "type": "string",
+                                        "description": "Device timestamp"
+                                    },
+                                    "server_timestamp": {
+                                        "type": "string",
+                                        "description": "Server timestamp"
+                                    },
+                                    "remarks": {
+                                        "type": "string",
+                                        "description": "Remarks"
+                                    },
+                                    "raw_data": {
+                                        "type": "string",
+                                        "description": "Raw data"
+                                    },
+                                    "parsed_data": {
+                                        "type": "string",
+                                        "description": "Parsed data"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Telematics Logs id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

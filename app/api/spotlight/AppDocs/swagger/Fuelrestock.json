@@ -1,0 +1,217 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuel restock API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/fueldeliveries/fuelrestock": {
+            "get": {
+                "summary": "Get Fuel restock",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Fuel restock",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "fuel_station_id": {
+                                        "type": "string",
+                                        "description": "Fuel station id"
+                                    },
+                                    "supplier_name": {
+                                        "type": "string",
+                                        "description": "Supplier name"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "quantity_litres": {
+                                        "type": "string",
+                                        "description": "Quantity litres"
+                                    },
+                                    "cost_per_litre": {
+                                        "type": "string",
+                                        "description": "Cost per litre"
+                                    },
+                                    "total_cost": {
+                                        "type": "string",
+                                        "description": "Total cost"
+                                    },
+                                    "delivery_note_number": {
+                                        "type": "string",
+                                        "description": "Delivery note number"
+                                    },
+                                    "delivery_date": {
+                                        "type": "string",
+                                        "description": "Delivery date"
+                                    },
+                                    "tank_reference": {
+                                        "type": "string",
+                                        "description": "Tank reference"
+                                    },
+                                    "buying_price": {
+                                        "type": "string",
+                                        "description": "Buying price"
+                                    },
+                                    "selling_price": {
+                                        "type": "string",
+                                        "description": "Selling price"
+                                    },
+                                    "margin": {
+                                        "type": "string",
+                                        "description": "Margin"
+                                    },
+                                    "total_margin": {
+                                        "type": "string",
+                                        "description": "Total margin"
+                                    },
+                                    "delivered_litres": {
+                                        "type": "string",
+                                        "description": "Delivered litres"
+                                    },
+                                    "variance": {
+                                        "type": "string",
+                                        "description": "Variance"
+                                    },
+                                    "variance_value": {
+                                        "type": "string",
+                                        "description": "Variance value"
+                                    },
+                                    "delivered_by": {
+                                        "type": "string",
+                                        "description": "Delivered by"
+                                    },
+                                    "received_by_staff_id": {
+                                        "type": "string",
+                                        "description": "Received by staff id"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Fuel restock",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "fuel_station_id": {
+                                        "type": "string",
+                                        "description": "Fuel station id"
+                                    },
+                                    "supplier_name": {
+                                        "type": "string",
+                                        "description": "Supplier name"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "quantity_litres": {
+                                        "type": "string",
+                                        "description": "Quantity litres"
+                                    },
+                                    "cost_per_litre": {
+                                        "type": "string",
+                                        "description": "Cost per litre"
+                                    },
+                                    "total_cost": {
+                                        "type": "string",
+                                        "description": "Total cost"
+                                    },
+                                    "delivery_note_number": {
+                                        "type": "string",
+                                        "description": "Delivery note number"
+                                    },
+                                    "delivery_date": {
+                                        "type": "string",
+                                        "description": "Delivery date"
+                                    },
+                                    "tank_reference": {
+                                        "type": "string",
+                                        "description": "Tank reference"
+                                    },
+                                    "buying_price": {
+                                        "type": "string",
+                                        "description": "Buying price"
+                                    },
+                                    "selling_price": {
+                                        "type": "string",
+                                        "description": "Selling price"
+                                    },
+                                    "margin": {
+                                        "type": "string",
+                                        "description": "Margin"
+                                    },
+                                    "total_margin": {
+                                        "type": "string",
+                                        "description": "Total margin"
+                                    },
+                                    "delivered_litres": {
+                                        "type": "string",
+                                        "description": "Delivered litres"
+                                    },
+                                    "variance": {
+                                        "type": "string",
+                                        "description": "Variance"
+                                    },
+                                    "variance_value": {
+                                        "type": "string",
+                                        "description": "Variance value"
+                                    },
+                                    "delivered_by": {
+                                        "type": "string",
+                                        "description": "Delivered by"
+                                    },
+                                    "received_by_staff_id": {
+                                        "type": "string",
+                                        "description": "Received by staff id"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Fuel restock id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

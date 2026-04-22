@@ -1,0 +1,153 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tank Level History API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/tanklevelhistory/tanklevelhistory": {
+            "get": {
+                "summary": "Get Tank Level History",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Tank Level History",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "tank_id": {
+                                        "type": "string",
+                                        "description": "Tank id"
+                                    },
+                                    "movement_type": {
+                                        "type": "string",
+                                        "description": "Movement type"
+                                    },
+                                    "liters_in": {
+                                        "type": "string",
+                                        "description": "Liters in"
+                                    },
+                                    "liters_out": {
+                                        "type": "string",
+                                        "description": "Liters out"
+                                    },
+                                    "new_volume": {
+                                        "type": "string",
+                                        "description": "New volume"
+                                    },
+                                    "reference_no": {
+                                        "type": "string",
+                                        "description": "Reference no"
+                                    },
+                                    "movement_time": {
+                                        "type": "string",
+                                        "description": "Movement time"
+                                    },
+                                    "remarks": {
+                                        "type": "string",
+                                        "description": "Remarks"
+                                    },
+                                    "reg_date": {
+                                        "type": "string",
+                                        "description": "Reg date"
+                                    },
+                                    "device_id": {
+                                        "type": "string",
+                                        "description": "Device id"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Tank Level History",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "tank_id": {
+                                        "type": "string",
+                                        "description": "Tank id"
+                                    },
+                                    "movement_type": {
+                                        "type": "string",
+                                        "description": "Movement type"
+                                    },
+                                    "liters_in": {
+                                        "type": "string",
+                                        "description": "Liters in"
+                                    },
+                                    "liters_out": {
+                                        "type": "string",
+                                        "description": "Liters out"
+                                    },
+                                    "new_volume": {
+                                        "type": "string",
+                                        "description": "New volume"
+                                    },
+                                    "reference_no": {
+                                        "type": "string",
+                                        "description": "Reference no"
+                                    },
+                                    "movement_time": {
+                                        "type": "string",
+                                        "description": "Movement time"
+                                    },
+                                    "remarks": {
+                                        "type": "string",
+                                        "description": "Remarks"
+                                    },
+                                    "reg_date": {
+                                        "type": "string",
+                                        "description": "Reg date"
+                                    },
+                                    "device_id": {
+                                        "type": "string",
+                                        "description": "Device id"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Tank Level History id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

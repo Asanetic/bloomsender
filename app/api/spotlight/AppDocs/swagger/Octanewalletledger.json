@@ -1,0 +1,153 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Octane wallet ledger API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/walletledger/octanewalletledger": {
+            "get": {
+                "summary": "Get Octane wallet ledger",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Octane wallet ledger",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "wallet_id": {
+                                        "type": "string",
+                                        "description": "Wallet id"
+                                    },
+                                    "merchant_id": {
+                                        "type": "string",
+                                        "description": "Merchant id"
+                                    },
+                                    "loan_id": {
+                                        "type": "string",
+                                        "description": "Loan id"
+                                    },
+                                    "txn_type": {
+                                        "type": "string",
+                                        "description": "Txn type"
+                                    },
+                                    "txn_direction": {
+                                        "type": "string",
+                                        "description": "Txn direction"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "description": "Amount"
+                                    },
+                                    "reference_id": {
+                                        "type": "string",
+                                        "description": "Reference id"
+                                    },
+                                    "external_txn_id": {
+                                        "type": "string",
+                                        "description": "External txn id"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "description": "Description"
+                                    },
+                                    "created_at": {
+                                        "type": "string",
+                                        "description": "Created at"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Octane wallet ledger",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "wallet_id": {
+                                        "type": "string",
+                                        "description": "Wallet id"
+                                    },
+                                    "merchant_id": {
+                                        "type": "string",
+                                        "description": "Merchant id"
+                                    },
+                                    "loan_id": {
+                                        "type": "string",
+                                        "description": "Loan id"
+                                    },
+                                    "txn_type": {
+                                        "type": "string",
+                                        "description": "Txn type"
+                                    },
+                                    "txn_direction": {
+                                        "type": "string",
+                                        "description": "Txn direction"
+                                    },
+                                    "amount": {
+                                        "type": "string",
+                                        "description": "Amount"
+                                    },
+                                    "reference_id": {
+                                        "type": "string",
+                                        "description": "Reference id"
+                                    },
+                                    "external_txn_id": {
+                                        "type": "string",
+                                        "description": "External txn id"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "description": "Description"
+                                    },
+                                    "created_at": {
+                                        "type": "string",
+                                        "description": "Created at"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Octane wallet ledger id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

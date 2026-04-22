@@ -1,0 +1,169 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Device list API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/tankdevices/devicelist": {
+            "get": {
+                "summary": "Get Device list",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Device list",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "station_id": {
+                                        "type": "string",
+                                        "description": "Station id"
+                                    },
+                                    "device_id": {
+                                        "type": "string",
+                                        "description": "Device id"
+                                    },
+                                    "device_name": {
+                                        "type": "string",
+                                        "description": "Device name"
+                                    },
+                                    "device_type": {
+                                        "type": "string",
+                                        "description": "Device type"
+                                    },
+                                    "tank_id": {
+                                        "type": "string",
+                                        "description": "Tank id"
+                                    },
+                                    "protocol": {
+                                        "type": "string",
+                                        "description": "Protocol"
+                                    },
+                                    "serial_number": {
+                                        "type": "string",
+                                        "description": "Serial number"
+                                    },
+                                    "install_date": {
+                                        "type": "string",
+                                        "description": "Install date"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "last_seen": {
+                                        "type": "string",
+                                        "description": "Last seen"
+                                    },
+                                    "remark": {
+                                        "type": "string",
+                                        "description": "Remark"
+                                    },
+                                    "reg_date": {
+                                        "type": "string",
+                                        "description": "Reg date"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Device list",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "station_id": {
+                                        "type": "string",
+                                        "description": "Station id"
+                                    },
+                                    "device_id": {
+                                        "type": "string",
+                                        "description": "Device id"
+                                    },
+                                    "device_name": {
+                                        "type": "string",
+                                        "description": "Device name"
+                                    },
+                                    "device_type": {
+                                        "type": "string",
+                                        "description": "Device type"
+                                    },
+                                    "tank_id": {
+                                        "type": "string",
+                                        "description": "Tank id"
+                                    },
+                                    "protocol": {
+                                        "type": "string",
+                                        "description": "Protocol"
+                                    },
+                                    "serial_number": {
+                                        "type": "string",
+                                        "description": "Serial number"
+                                    },
+                                    "install_date": {
+                                        "type": "string",
+                                        "description": "Install date"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "last_seen": {
+                                        "type": "string",
+                                        "description": "Last seen"
+                                    },
+                                    "remark": {
+                                        "type": "string",
+                                        "description": "Remark"
+                                    },
+                                    "reg_date": {
+                                        "type": "string",
+                                        "description": "Reg date"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Device list id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

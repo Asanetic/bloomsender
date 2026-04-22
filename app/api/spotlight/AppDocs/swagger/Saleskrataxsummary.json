@@ -1,0 +1,209 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sales KRA Tax Summary API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/salestax/saleskrataxsummary": {
+            "get": {
+                "summary": "Get Sales KRA Tax Summary",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Sales KRA Tax Summary",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "created_at": {
+                                        "type": "string",
+                                        "description": "Created at"
+                                    },
+                                    "sale_order_id": {
+                                        "type": "string",
+                                        "description": "Sale order id"
+                                    },
+                                    "taxable_amount_a": {
+                                        "type": "string",
+                                        "description": "Taxable amount a"
+                                    },
+                                    "taxable_amount_b": {
+                                        "type": "string",
+                                        "description": "Taxable amount b"
+                                    },
+                                    "taxable_amount_c": {
+                                        "type": "string",
+                                        "description": "Taxable amount c"
+                                    },
+                                    "taxable_amount_d": {
+                                        "type": "string",
+                                        "description": "Taxable amount d"
+                                    },
+                                    "taxable_amount_e": {
+                                        "type": "string",
+                                        "description": "Taxable amount e"
+                                    },
+                                    "tax_rate_a": {
+                                        "type": "string",
+                                        "description": "Tax rate a"
+                                    },
+                                    "tax_rate_b": {
+                                        "type": "string",
+                                        "description": "Tax rate b"
+                                    },
+                                    "tax_rate_c": {
+                                        "type": "string",
+                                        "description": "Tax rate c"
+                                    },
+                                    "tax_rate_d": {
+                                        "type": "string",
+                                        "description": "Tax rate d"
+                                    },
+                                    "tax_rate_e": {
+                                        "type": "string",
+                                        "description": "Tax rate e"
+                                    },
+                                    "tax_amount_a": {
+                                        "type": "string",
+                                        "description": "Tax amount a"
+                                    },
+                                    "tax_amount_b": {
+                                        "type": "string",
+                                        "description": "Tax amount b"
+                                    },
+                                    "tax_amount_c": {
+                                        "type": "string",
+                                        "description": "Tax amount c"
+                                    },
+                                    "tax_amount_d": {
+                                        "type": "string",
+                                        "description": "Tax amount d"
+                                    },
+                                    "tax_amount_e": {
+                                        "type": "string",
+                                        "description": "Tax amount e"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Sales KRA Tax Summary",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "created_at": {
+                                        "type": "string",
+                                        "description": "Created at"
+                                    },
+                                    "sale_order_id": {
+                                        "type": "string",
+                                        "description": "Sale order id"
+                                    },
+                                    "taxable_amount_a": {
+                                        "type": "string",
+                                        "description": "Taxable amount a"
+                                    },
+                                    "taxable_amount_b": {
+                                        "type": "string",
+                                        "description": "Taxable amount b"
+                                    },
+                                    "taxable_amount_c": {
+                                        "type": "string",
+                                        "description": "Taxable amount c"
+                                    },
+                                    "taxable_amount_d": {
+                                        "type": "string",
+                                        "description": "Taxable amount d"
+                                    },
+                                    "taxable_amount_e": {
+                                        "type": "string",
+                                        "description": "Taxable amount e"
+                                    },
+                                    "tax_rate_a": {
+                                        "type": "string",
+                                        "description": "Tax rate a"
+                                    },
+                                    "tax_rate_b": {
+                                        "type": "string",
+                                        "description": "Tax rate b"
+                                    },
+                                    "tax_rate_c": {
+                                        "type": "string",
+                                        "description": "Tax rate c"
+                                    },
+                                    "tax_rate_d": {
+                                        "type": "string",
+                                        "description": "Tax rate d"
+                                    },
+                                    "tax_rate_e": {
+                                        "type": "string",
+                                        "description": "Tax rate e"
+                                    },
+                                    "tax_amount_a": {
+                                        "type": "string",
+                                        "description": "Tax amount a"
+                                    },
+                                    "tax_amount_b": {
+                                        "type": "string",
+                                        "description": "Tax amount b"
+                                    },
+                                    "tax_amount_c": {
+                                        "type": "string",
+                                        "description": "Tax amount c"
+                                    },
+                                    "tax_amount_d": {
+                                        "type": "string",
+                                        "description": "Tax amount d"
+                                    },
+                                    "tax_amount_e": {
+                                        "type": "string",
+                                        "description": "Tax amount e"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Sales KRA Tax Summary id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

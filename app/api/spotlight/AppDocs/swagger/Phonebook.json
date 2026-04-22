@@ -1,0 +1,161 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Phonebook API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/spotlight/clients/phonebook": {
+            "get": {
+                "summary": "Get Phonebook",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Phonebook",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "client_name": {
+                                        "type": "string",
+                                        "description": "Client name"
+                                    },
+                                    "client_email": {
+                                        "type": "string",
+                                        "description": "Client email"
+                                    },
+                                    "client_tel": {
+                                        "type": "string",
+                                        "description": "Client tel"
+                                    },
+                                    "client_location": {
+                                        "type": "string",
+                                        "description": "Client location"
+                                    },
+                                    "gender": {
+                                        "type": "string",
+                                        "description": "Gender"
+                                    },
+                                    "date_registered": {
+                                        "type": "string",
+                                        "description": "Date registered"
+                                    },
+                                    "client_photo": {
+                                        "type": "string",
+                                        "description": "Client photo"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password"
+                                    },
+                                    "admin_id": {
+                                        "type": "string",
+                                        "description": "Admin id"
+                                    },
+                                    "industry": {
+                                        "type": "string",
+                                        "description": "Industry"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Phonebook",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "client_name": {
+                                        "type": "string",
+                                        "description": "Client name"
+                                    },
+                                    "client_email": {
+                                        "type": "string",
+                                        "description": "Client email"
+                                    },
+                                    "client_tel": {
+                                        "type": "string",
+                                        "description": "Client tel"
+                                    },
+                                    "client_location": {
+                                        "type": "string",
+                                        "description": "Client location"
+                                    },
+                                    "gender": {
+                                        "type": "string",
+                                        "description": "Gender"
+                                    },
+                                    "date_registered": {
+                                        "type": "string",
+                                        "description": "Date registered"
+                                    },
+                                    "client_photo": {
+                                        "type": "string",
+                                        "description": "Client photo"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "Password"
+                                    },
+                                    "admin_id": {
+                                        "type": "string",
+                                        "description": "Admin id"
+                                    },
+                                    "industry": {
+                                        "type": "string",
+                                        "description": "Industry"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Phonebook id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

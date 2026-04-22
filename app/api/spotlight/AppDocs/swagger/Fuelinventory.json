@@ -1,0 +1,289 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuel Inventory API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/fuelinventory/fuelinventory": {
+            "get": {
+                "summary": "Get Fuel Inventory",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Fuel Inventory",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "item_name": {
+                                        "type": "string",
+                                        "description": "Item name"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "fuel_grade": {
+                                        "type": "string",
+                                        "description": "Fuel grade"
+                                    },
+                                    "buying_price": {
+                                        "type": "string",
+                                        "description": "Buying price"
+                                    },
+                                    "selling_price": {
+                                        "type": "string",
+                                        "description": "Selling price"
+                                    },
+                                    "current_stock_litres": {
+                                        "type": "string",
+                                        "description": "Current stock litres"
+                                    },
+                                    "tank_reference": {
+                                        "type": "string",
+                                        "description": "Tank reference"
+                                    },
+                                    "last_updated_on": {
+                                        "type": "string",
+                                        "description": "Last updated on"
+                                    },
+                                    "created_on": {
+                                        "type": "string",
+                                        "description": "Created on"
+                                    },
+                                    "density_kg_per_m3": {
+                                        "type": "string",
+                                        "description": "Density kg per m3"
+                                    },
+                                    "volume_correction_factor": {
+                                        "type": "string",
+                                        "description": "Volume correction factor"
+                                    },
+                                    "manual_dip_reading_litres": {
+                                        "type": "string",
+                                        "description": "Manual dip reading litres"
+                                    },
+                                    "atg_reading_litres": {
+                                        "type": "string",
+                                        "description": "Atg reading litres"
+                                    },
+                                    "percentage_variance": {
+                                        "type": "string",
+                                        "description": "Percentage variance"
+                                    },
+                                    "variance_reason_code": {
+                                        "type": "string",
+                                        "description": "Variance reason code"
+                                    },
+                                    "item_code": {
+                                        "type": "string",
+                                        "description": "Item code"
+                                    },
+                                    "item_class_code": {
+                                        "type": "string",
+                                        "description": "Item class code"
+                                    },
+                                    "item_type_code": {
+                                        "type": "string",
+                                        "description": "Item type code"
+                                    },
+                                    "origin_nation_code": {
+                                        "type": "string",
+                                        "description": "Origin nation code"
+                                    },
+                                    "package_unit_code": {
+                                        "type": "string",
+                                        "description": "Package unit code"
+                                    },
+                                    "quantity_unit_code": {
+                                        "type": "string",
+                                        "description": "Quantity unit code"
+                                    },
+                                    "tax_type_code": {
+                                        "type": "string",
+                                        "description": "Tax type code"
+                                    },
+                                    "default_unit_price": {
+                                        "type": "string",
+                                        "description": "Default unit price"
+                                    },
+                                    "stock_quantity": {
+                                        "type": "string",
+                                        "description": "Stock quantity"
+                                    },
+                                    "item_bar_code": {
+                                        "type": "string",
+                                        "description": "Item bar code"
+                                    },
+                                    "itax_id": {
+                                        "type": "string",
+                                        "description": "Itax id"
+                                    },
+                                    "fuel_grade_name": {
+                                        "type": "string",
+                                        "description": "Fuel grade name"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Fuel Inventory",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "item_name": {
+                                        "type": "string",
+                                        "description": "Item name"
+                                    },
+                                    "fuel_type": {
+                                        "type": "string",
+                                        "description": "Fuel type"
+                                    },
+                                    "fuel_grade": {
+                                        "type": "string",
+                                        "description": "Fuel grade"
+                                    },
+                                    "buying_price": {
+                                        "type": "string",
+                                        "description": "Buying price"
+                                    },
+                                    "selling_price": {
+                                        "type": "string",
+                                        "description": "Selling price"
+                                    },
+                                    "current_stock_litres": {
+                                        "type": "string",
+                                        "description": "Current stock litres"
+                                    },
+                                    "tank_reference": {
+                                        "type": "string",
+                                        "description": "Tank reference"
+                                    },
+                                    "last_updated_on": {
+                                        "type": "string",
+                                        "description": "Last updated on"
+                                    },
+                                    "created_on": {
+                                        "type": "string",
+                                        "description": "Created on"
+                                    },
+                                    "density_kg_per_m3": {
+                                        "type": "string",
+                                        "description": "Density kg per m3"
+                                    },
+                                    "volume_correction_factor": {
+                                        "type": "string",
+                                        "description": "Volume correction factor"
+                                    },
+                                    "manual_dip_reading_litres": {
+                                        "type": "string",
+                                        "description": "Manual dip reading litres"
+                                    },
+                                    "atg_reading_litres": {
+                                        "type": "string",
+                                        "description": "Atg reading litres"
+                                    },
+                                    "percentage_variance": {
+                                        "type": "string",
+                                        "description": "Percentage variance"
+                                    },
+                                    "variance_reason_code": {
+                                        "type": "string",
+                                        "description": "Variance reason code"
+                                    },
+                                    "item_code": {
+                                        "type": "string",
+                                        "description": "Item code"
+                                    },
+                                    "item_class_code": {
+                                        "type": "string",
+                                        "description": "Item class code"
+                                    },
+                                    "item_type_code": {
+                                        "type": "string",
+                                        "description": "Item type code"
+                                    },
+                                    "origin_nation_code": {
+                                        "type": "string",
+                                        "description": "Origin nation code"
+                                    },
+                                    "package_unit_code": {
+                                        "type": "string",
+                                        "description": "Package unit code"
+                                    },
+                                    "quantity_unit_code": {
+                                        "type": "string",
+                                        "description": "Quantity unit code"
+                                    },
+                                    "tax_type_code": {
+                                        "type": "string",
+                                        "description": "Tax type code"
+                                    },
+                                    "default_unit_price": {
+                                        "type": "string",
+                                        "description": "Default unit price"
+                                    },
+                                    "stock_quantity": {
+                                        "type": "string",
+                                        "description": "Stock quantity"
+                                    },
+                                    "item_bar_code": {
+                                        "type": "string",
+                                        "description": "Item bar code"
+                                    },
+                                    "itax_id": {
+                                        "type": "string",
+                                        "description": "Itax id"
+                                    },
+                                    "fuel_grade_name": {
+                                        "type": "string",
+                                        "description": "Fuel grade name"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Fuel Inventory id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

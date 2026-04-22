@@ -1,0 +1,289 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Fuel stations list API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/fuelstations/fuelstationslist": {
+            "get": {
+                "summary": "Get Fuel stations list",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Fuel stations list",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "station_name": {
+                                        "type": "string",
+                                        "description": "Station name"
+                                    },
+                                    "station_code": {
+                                        "type": "string",
+                                        "description": "Station code"
+                                    },
+                                    "country": {
+                                        "type": "string",
+                                        "description": "Country"
+                                    },
+                                    "county": {
+                                        "type": "string",
+                                        "description": "County"
+                                    },
+                                    "region": {
+                                        "type": "string",
+                                        "description": "Region"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "description": "Location"
+                                    },
+                                    "contact_number": {
+                                        "type": "string",
+                                        "description": "Contact number"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email"
+                                    },
+                                    "manager_name": {
+                                        "type": "string",
+                                        "description": "Manager name"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "latitude": {
+                                        "type": "string",
+                                        "description": "Latitude"
+                                    },
+                                    "longitude": {
+                                        "type": "string",
+                                        "description": "Longitude"
+                                    },
+                                    "google_maps_link": {
+                                        "type": "string",
+                                        "description": "Google maps link"
+                                    },
+                                    "opening_hours": {
+                                        "type": "string",
+                                        "description": "Opening hours"
+                                    },
+                                    "is_operational": {
+                                        "type": "string",
+                                        "description": "Is operational"
+                                    },
+                                    "has_atg_system": {
+                                        "type": "string",
+                                        "description": "Has atg system"
+                                    },
+                                    "licence_number": {
+                                        "type": "string",
+                                        "description": "Licence number"
+                                    },
+                                    "licence_expiry_date": {
+                                        "type": "string",
+                                        "description": "Licence expiry date"
+                                    },
+                                    "erp_integration_code": {
+                                        "type": "string",
+                                        "description": "Erp integration code"
+                                    },
+                                    "till_number": {
+                                        "type": "string",
+                                        "description": "Till number"
+                                    },
+                                    "paybill_number": {
+                                        "type": "string",
+                                        "description": "Paybill number"
+                                    },
+                                    "bank_account_name": {
+                                        "type": "string",
+                                        "description": "Bank account name"
+                                    },
+                                    "bank_account_number": {
+                                        "type": "string",
+                                        "description": "Bank account number"
+                                    },
+                                    "default_payment_mode": {
+                                        "type": "string",
+                                        "description": "Default payment mode"
+                                    },
+                                    "storage_capacity_litres": {
+                                        "type": "string",
+                                        "description": "Storage capacity litres"
+                                    },
+                                    "additional_details": {
+                                        "type": "string",
+                                        "description": "Additional details"
+                                    },
+                                    "created_on": {
+                                        "type": "string",
+                                        "description": "Created on"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Fuel stations list",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "station_name": {
+                                        "type": "string",
+                                        "description": "Station name"
+                                    },
+                                    "station_code": {
+                                        "type": "string",
+                                        "description": "Station code"
+                                    },
+                                    "country": {
+                                        "type": "string",
+                                        "description": "Country"
+                                    },
+                                    "county": {
+                                        "type": "string",
+                                        "description": "County"
+                                    },
+                                    "region": {
+                                        "type": "string",
+                                        "description": "Region"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "description": "Location"
+                                    },
+                                    "contact_number": {
+                                        "type": "string",
+                                        "description": "Contact number"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email"
+                                    },
+                                    "manager_name": {
+                                        "type": "string",
+                                        "description": "Manager name"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "latitude": {
+                                        "type": "string",
+                                        "description": "Latitude"
+                                    },
+                                    "longitude": {
+                                        "type": "string",
+                                        "description": "Longitude"
+                                    },
+                                    "google_maps_link": {
+                                        "type": "string",
+                                        "description": "Google maps link"
+                                    },
+                                    "opening_hours": {
+                                        "type": "string",
+                                        "description": "Opening hours"
+                                    },
+                                    "is_operational": {
+                                        "type": "string",
+                                        "description": "Is operational"
+                                    },
+                                    "has_atg_system": {
+                                        "type": "string",
+                                        "description": "Has atg system"
+                                    },
+                                    "licence_number": {
+                                        "type": "string",
+                                        "description": "Licence number"
+                                    },
+                                    "licence_expiry_date": {
+                                        "type": "string",
+                                        "description": "Licence expiry date"
+                                    },
+                                    "erp_integration_code": {
+                                        "type": "string",
+                                        "description": "Erp integration code"
+                                    },
+                                    "till_number": {
+                                        "type": "string",
+                                        "description": "Till number"
+                                    },
+                                    "paybill_number": {
+                                        "type": "string",
+                                        "description": "Paybill number"
+                                    },
+                                    "bank_account_name": {
+                                        "type": "string",
+                                        "description": "Bank account name"
+                                    },
+                                    "bank_account_number": {
+                                        "type": "string",
+                                        "description": "Bank account number"
+                                    },
+                                    "default_payment_mode": {
+                                        "type": "string",
+                                        "description": "Default payment mode"
+                                    },
+                                    "storage_capacity_litres": {
+                                        "type": "string",
+                                        "description": "Storage capacity litres"
+                                    },
+                                    "additional_details": {
+                                        "type": "string",
+                                        "description": "Additional details"
+                                    },
+                                    "created_on": {
+                                        "type": "string",
+                                        "description": "Created on"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Fuel stations list id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

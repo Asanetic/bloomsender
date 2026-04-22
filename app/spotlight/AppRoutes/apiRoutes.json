@@ -1,0 +1,23 @@
+{
+    "smartapi": {
+        "base": "/api/spotlight/smartapi"
+    },
+    "dashboard": {
+        "admin": "/api/octanev4/saleshistory/dashboard/admin"
+    },
+    "messageoutbox": {
+        "base": "/api/spotlight/messages/messageoutbox",
+        "delete": "/api/spotlight/messages/delete",
+        "import": "/api/spotlight/messages/messageoutbox/import"
+    },
+    "messagetemplates": {
+        "base": "/api/spotlight/messagetemplates/messagetemplates",
+        "delete": "/api/spotlight/messagetemplates/delete",
+        "import": "/api/spotlight/messagetemplates/messagetemplates/import"
+    },
+    "phonebook": {
+        "base": "/api/spotlight/clients/phonebook",
+        "delete": "/api/spotlight/clients/delete",
+        "import": "/api/spotlight/clients/phonebook/import"
+    }
+}

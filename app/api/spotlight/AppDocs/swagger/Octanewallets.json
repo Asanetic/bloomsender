@@ -1,0 +1,121 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Octane wallets API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/wallets/octanewallets": {
+            "get": {
+                "summary": "Get Octane wallets",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Octane wallets",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "wallet_name": {
+                                        "type": "string",
+                                        "description": "Wallet name"
+                                    },
+                                    "merchant_id": {
+                                        "type": "string",
+                                        "description": "Merchant id"
+                                    },
+                                    "wallet_type": {
+                                        "type": "string",
+                                        "description": "Wallet type"
+                                    },
+                                    "wallet_balance": {
+                                        "type": "string",
+                                        "description": "Wallet balance"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "created_at": {
+                                        "type": "string",
+                                        "description": "Created at"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Octane wallets",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "wallet_name": {
+                                        "type": "string",
+                                        "description": "Wallet name"
+                                    },
+                                    "merchant_id": {
+                                        "type": "string",
+                                        "description": "Merchant id"
+                                    },
+                                    "wallet_type": {
+                                        "type": "string",
+                                        "description": "Wallet type"
+                                    },
+                                    "wallet_balance": {
+                                        "type": "string",
+                                        "description": "Wallet balance"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status"
+                                    },
+                                    "created_at": {
+                                        "type": "string",
+                                        "description": "Created at"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Octane wallets id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}

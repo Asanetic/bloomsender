@@ -1,0 +1,185 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Shift banking history API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "api/octanev4/banking/shiftbankinghistory": {
+            "get": {
+                "summary": "Get Shift banking history",
+                "parameters": [
+                    {
+                        "name": "searchAny",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Base64 search value"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create Shift banking history",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "record_date": {
+                                        "type": "string",
+                                        "description": "Record date"
+                                    },
+                                    "station_id": {
+                                        "type": "string",
+                                        "description": "Station id"
+                                    },
+                                    "shift_code": {
+                                        "type": "string",
+                                        "description": "Shift code"
+                                    },
+                                    "expected_sales_amount": {
+                                        "type": "string",
+                                        "description": "Expected sales amount"
+                                    },
+                                    "actual_banked_amount": {
+                                        "type": "string",
+                                        "description": "Actual banked amount"
+                                    },
+                                    "variance_amount": {
+                                        "type": "string",
+                                        "description": "Variance amount"
+                                    },
+                                    "variance_reason": {
+                                        "type": "string",
+                                        "description": "Variance reason"
+                                    },
+                                    "banked_by": {
+                                        "type": "string",
+                                        "description": "Banked by"
+                                    },
+                                    "banked_on": {
+                                        "type": "string",
+                                        "description": "Banked on"
+                                    },
+                                    "bank_reference_code": {
+                                        "type": "string",
+                                        "description": "Bank reference code"
+                                    },
+                                    "banking_status": {
+                                        "type": "string",
+                                        "description": "Banking status"
+                                    },
+                                    "payment_notes": {
+                                        "type": "string",
+                                        "description": "Payment notes"
+                                    },
+                                    "verified_by": {
+                                        "type": "string",
+                                        "description": "Verified by"
+                                    },
+                                    "verified_on": {
+                                        "type": "string",
+                                        "description": "Verified on"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created successfully"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Shift banking history",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "record_date": {
+                                        "type": "string",
+                                        "description": "Record date"
+                                    },
+                                    "station_id": {
+                                        "type": "string",
+                                        "description": "Station id"
+                                    },
+                                    "shift_code": {
+                                        "type": "string",
+                                        "description": "Shift code"
+                                    },
+                                    "expected_sales_amount": {
+                                        "type": "string",
+                                        "description": "Expected sales amount"
+                                    },
+                                    "actual_banked_amount": {
+                                        "type": "string",
+                                        "description": "Actual banked amount"
+                                    },
+                                    "variance_amount": {
+                                        "type": "string",
+                                        "description": "Variance amount"
+                                    },
+                                    "variance_reason": {
+                                        "type": "string",
+                                        "description": "Variance reason"
+                                    },
+                                    "banked_by": {
+                                        "type": "string",
+                                        "description": "Banked by"
+                                    },
+                                    "banked_on": {
+                                        "type": "string",
+                                        "description": "Banked on"
+                                    },
+                                    "bank_reference_code": {
+                                        "type": "string",
+                                        "description": "Bank reference code"
+                                    },
+                                    "banking_status": {
+                                        "type": "string",
+                                        "description": "Banking status"
+                                    },
+                                    "payment_notes": {
+                                        "type": "string",
+                                        "description": "Payment notes"
+                                    },
+                                    "verified_by": {
+                                        "type": "string",
+                                        "description": "Verified by"
+                                    },
+                                    "verified_on": {
+                                        "type": "string",
+                                        "description": "Verified on"
+                                    },
+                                    "Node": {
+                                        "type": "string",
+                                        "description": " Shift banking history id to update "
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    }
+                }
+            }
+        }
+    }
+}
