@@ -159,7 +159,7 @@ export function destroyAppSession(redirect, loginPath=``)
   removeAuthSession()
 
   if(loginPath==""){
-    loginPath=`${hiveRoutes.auth}/login`
+    loginPath=`${hiveRoutes.hiveBaseRoute}/${hiveRoutes.auth}/login`
   }
 
   console.log("destroyAppSession", loginPath)
@@ -177,7 +177,7 @@ export function destroyAppSession(redirect, loginPath=``)
    window.location.href = `${loginPath}?ref_url_go_to=${btoa(window.location.href)}`
 
   }else{
-   window.location.href=`${hiveRoutes.auth}/login`
+   window.location.href=`${hiveRoutes.hiveBaseRoute}/${hiveRoutes.auth}/login`
   }
 }
 
