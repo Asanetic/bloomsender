@@ -64,10 +64,10 @@ export async function ProcessUserLogin(e) {
         window.location.href = decodedUrl;
       } catch (err) {
         console.warn('Failed to decode ref_url_go_to. Redirecting to splash instead.');
-        window.location.href = `${hiveRoutes.auth}/splash`;
+        window.location.href = `${hiveRoutes.hiveBaseRoute}/${hiveRoutes.auth}/splash`;
       }
     } else {
-      window.location.href = `${hiveRoutes.auth}/splash`;
+      window.location.href = `${hiveRoutes.hiveBaseRoute}/${hiveRoutes.auth}/splash`;
     }
 
     // ✅ Return result so the component can use it

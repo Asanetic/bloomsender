@@ -20,17 +20,17 @@ const saAuthConfigs = {
   sessionColumns : "record_id,tel,name,email,user_role,hive_site_id,hive_site_name",
 
   // Post-login redirect
-  afterSplashPage:`${hiveRoutes.cms}/messages/list`,
+  afterSplashPage:`${hiveRoutes.hiveBaseRoute}/${hiveRoutes.cms}/messages/list`,
 
   // UI toggles
   showResetLink: false, // true || false
   showCreateAccount: false, // true || false
 
   // Routes (UI component files/pages, not PHP scripts)
-  loginUrl: `${hiveRoutes.auth}/login`,
-  registerUrl: `${hiveRoutes.auth}/register`,
-  changePasswordUrl: `${hiveRoutes.auth}/resetpassword`,
-  resetPasswordUrl: `${hiveRoutes.auth}/resetpassword`,
+  loginUrl: `${hiveRoutes.hiveBaseRoute}/${hiveRoutes.auth}/login`,
+  registerUrl: `${hiveRoutes.hiveBaseRoute}/${hiveRoutes.auth}/register`,
+  changePasswordUrl: `${hiveRoutes.hiveBaseRoute}/${hiveRoutes.auth}/resetpassword`,
+  resetPasswordUrl: `${hiveRoutes.hiveBaseRoute}/${hiveRoutes.auth}/resetpassword`,
   
   //Api endpoints
   createUserApi : `${hiveRoutes.hiveBaseRoute}/api/${mosyThemeConfigs.mosySystemName}/accounts/createaccount`,
