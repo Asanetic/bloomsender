@@ -4,7 +4,8 @@ import { processAuthToken } from "../../auth/authManager";
 
 import {
   sendMessage,
-  resendMessage
+  resendMessage,
+  shareWhatsAppMessage
 } from "../messages/logicControl/messaging-actions";
 
 // ================================
@@ -14,7 +15,8 @@ import {
 // One map. One truth.
 const ACTIONS = {
 sendMessage,
-resendMessage
+resendMessage,
+shareWhatsAppMessage
 };
 // ================================
 // UTILS

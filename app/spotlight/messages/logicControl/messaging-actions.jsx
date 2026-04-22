@@ -3,7 +3,7 @@
  * PURPOSE: Frontend logic functions for messaging-actions
  */
 
-import { closeMosyCard } from '../../../components/MosyCard';
+import { closeMosyCard, MosyCard } from '../../../components/MosyCard';
 import { MosyAlertCard, MosyNotify } from '../../../MosyUtils/ActionModals';
 import { mosyPostData , mosy_push_data ,mosyScrollTo, mosyGetElemVal, magicTrimText} from '../../../MosyUtils/hiveUtils';
 import { getApiRoutes } from '../../AppRoutes/apiRoutesHandler';
@@ -46,6 +46,89 @@ async function postSmartSend(action, payload) {
   });
 }
 
+function hasValue(value) {
+  return !!String(value || '').trim();
+}
+
+function getAvailableDeliveryOptions(payload = {}) {
+  return {
+    sms: hasValue(payload?.receiver_tel),
+    email: hasValue(payload?.receiver_email)
+  };
+}
+
+function openDeliveryTypeCard(payload = {}) {
+  const modalId = 'modal1';
+  const options = getAvailableDeliveryOptions(payload);
+
+  return new Promise((resolve) => {
+    const selectType = (type) => {
+      closeMosyCard(modalId);
+      resolve(type);
+    };
+
+    const cancelSelection = () => {
+      closeMosyCard(modalId);
+      resolve(null);
+    };
+
+    MosyCard(
+      <div className="row col-md-12 justify-content-center p-0 m-0">
+        <div className="fancy-gradient-spinner" title="Delivery Type">
+          <i className="fa fa-paper-plane large_icon text-primary"></i>
+        </div>
+      </div>,
+      <div className="text-center">
+        <p className="mt-3 mb-3">Choose how you want to send this message</p>
+
+        <div className="row col-md-12 justify-content-center p-0 m-0">
+          <button
+            className="btn btn-outline-primary border border_set col-md-3 col-10 mb-2 mr-md-2"
+            onClick={() => selectType('sms')}
+            disabled={!options.sms}
+            title={options.sms ? 'Send as SMS' : 'Receiver phone is required'}
+          >
+            SMS
+          </button>
+
+          <button
+            className="btn btn-outline-primary border border_set col-md-3 col-10 mb-2 mr-md-2"
+            onClick={() => selectType('email')}
+            disabled={!options.email}
+            title={options.email ? 'Send as Email' : 'Receiver email is required'}
+          >
+            Email
+          </button>
+
+          <button
+            className="btn btn-outline-primary border border_set col-md-3 col-10 mb-2"
+            onClick={() => selectType('both')}
+            disabled={!options.sms || !options.email}
+            title={
+              !options.sms || !options.email
+                ? 'Receiver phone and email are required'
+                : 'Send both SMS and Email'
+            }
+          >
+            Both
+          </button>
+        </div>
+
+        <div className="row col-md-12 justify-content-center mt-3 border-top border_set pt-3 p-0 m-0">
+          <button
+            className="btn btn-outline-secondary border border_set col-lg-4 col-6"
+            onClick={cancelSelection}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>,
+      true,
+      modalId
+    );
+  });
+}
+
 export function resendMessage(messageData = {}) {
   const payload = buildMessagePayload(messageData);
   payload.force_resend = true;
@@ -53,7 +136,7 @@ export function resendMessage(messageData = {}) {
   return sendMessage(payload, 'resendMessage');
 }
 
-export function sendMessage(messageData = {}, actionName = 'sendMessage') {
+export async function sendMessage(messageData = {}, actionName = 'sendMessage') {
   mosyScrollTo("message_details");
 
   const payload = buildMessagePayload(messageData);
@@ -68,10 +151,18 @@ export function sendMessage(messageData = {}, actionName = 'sendMessage') {
     return;
   }
 
+  const selectedMessageType = await openDeliveryTypeCard(payload);
+
+  if (!selectedMessageType) {
+    return;
+  }
+
+  payload.message_type = selectedMessageType;
+
   MosyAlertCard({
     icon: 'question-circle',
     iconColor: 'text-primary',
-    message: 'Confirm send message?',
+    message: `Confirm send message via ${selectedMessageType.toUpperCase()}?`,
     yesLabel: 'Send',
     noLabel: 'Cancel',
     onYes: async () => {
@@ -168,12 +259,31 @@ Steps
 export function whatsappShare() {
   const messageToSend = mosyGetElemVal("message_details", "");
   const receiver = mosyGetElemVal("receiver_tel", "");
+  const payload = buildMessagePayload();
 
   MosyAlertCard({
     message: `Send to ${receiver} \n ${magicTrimText(messageToSend, 100)}`,
     icon: "whatsapp",
     iconColor: "text-success",
     onYes: async () => {
+      if (!payload.messageid && !payload.messaging_dataNode) {
+        MosyNotify({
+          message: "Save this message first before sharing via WhatsApp.",
+          icon: "times-circle",
+          iconColor: "text-danger"
+        });
+        return;
+      }
+
+      if (!receiver || !messageToSend) {
+        MosyNotify({
+          message: "Receiver phone and message details are required.",
+          icon: "times-circle",
+          iconColor: "text-danger"
+        });
+        return;
+      }
+
       MosyNotify({
         message: "Sending message...",
         icon: "send",
@@ -181,7 +291,29 @@ export function whatsappShare() {
         id: "topmost"
       });
 
-      openWhatsAppUrl(receiver, messageToSend); // ✅ Use this instead of <WhatsAppAutoOpen />
+      try {
+        const trackingResponse = await postSmartSend("shareWhatsAppMessage", {
+          ...payload,
+          message_type: "whatsapp"
+        });
+
+        if (trackingResponse?.status !== "success" || trackingResponse?.data?.success === false) {
+          MosyNotify({
+            message: trackingResponse?.data?.message || "WhatsApp opened, but tracking failed.",
+            icon: "warning",
+            iconColor: "text-warning"
+          });
+        }
+      } catch (error) {
+        console.error("shareWhatsAppMessage error:", error);
+        MosyNotify({
+          message: "WhatsApp opened, but backend tracking failed.",
+          icon: "warning",
+          iconColor: "text-warning"
+        });
+      }
+
+      openWhatsAppUrl(receiver, messageToSend);
     },
     onNo: () => {
       closeMosyCard();
@@ -190,7 +322,6 @@ export function whatsappShare() {
     noLabel: "Cancel"
   });
 }
-
 
 export function openWhatsAppUrl(phone, message) {
   if (!phone || !message) return;
@@ -238,3 +369,5 @@ export function openWhatsAppUrl(phone, message) {
   const url = `${baseUrl}?phone=${whatsappPhone}&text=${encodedMessage}`;
   window.open(url, "_blank", "noopener,noreferrer");
 }
+
+

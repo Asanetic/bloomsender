@@ -6,6 +6,7 @@
 import {
   base64Decode,
   magicRandomStr,
+  mosyFlexQuickSel,
   mosyRightNow,
   mosySqlInsert,
   mosySqlUpdate
@@ -31,6 +32,38 @@ function safeSqlValue(value) {
 
 function normalizeMessageType(value) {
   return safeText(value, '').toLowerCase();
+}
+
+function parseMessageTypeFlags(value) {
+  const type = normalizeMessageType(value);
+
+  return {
+    sms: type.includes('sms'),
+    email: type.includes('email') || type.includes('mail'),
+    whatsapp: type.includes('whatsapp') || type.includes('whats app')
+  };
+}
+
+function toMessageTypeLabel({ sms = false, email = false, whatsapp = false } = {}) {
+  if (sms && email && whatsapp) return 'EMAIL and SMS and WhatsApp';
+  if (sms && email) return 'EMAIL and SMS';
+  if (sms && whatsapp) return 'SMS and WhatsApp';
+  if (email && whatsapp) return 'Email and WhatsApp';
+  if (whatsapp) return 'WhatsApp';
+  if (sms) return 'SMS';
+  if (email) return 'Email';
+  return '';
+}
+
+function mergeMessageTypeLabels(existingType, newType) {
+  const existingFlags = parseMessageTypeFlags(existingType);
+  const newFlags = parseMessageTypeFlags(newType);
+
+  return toMessageTypeLabel({
+    sms: existingFlags.sms || newFlags.sms,
+    email: existingFlags.email || newFlags.email,
+    whatsapp: existingFlags.whatsapp || newFlags.whatsapp
+  });
 }
 
 function shouldSendSms(messageType, receiverTel) {
@@ -144,8 +177,43 @@ async function updateSentState(whereStr, updates) {
   return await mosySqlUpdate(MESSAGE_TABLE, updates, updates, whereStr);
 }
 
+async function getExistingMessageType({ payload, messageId }) {
+  const payloadMessageId = safeText(payload?.messageid || payload?.NodeId);
+  const resolvedMessageId = payloadMessageId || safeText(messageId);
+
+  if (resolvedMessageId) {
+    const rowByMessageId = await mosyFlexQuickSel(
+      MESSAGE_TABLE,
+      'message_type',
+      `WHERE messageid='${safeSqlValue(resolvedMessageId)}'`,
+      'r'
+    );
+
+    if (rowByMessageId?.message_type) {
+      return safeText(rowByMessageId.message_type);
+    }
+  }
+
+  const decodedPrimKey = safeText(base64Decode(safeText(payload?.messaging_dataNode)));
+  const hasNumericPrimKey = /^\d+$/.test(decodedPrimKey);
+
+  if (!hasNumericPrimKey) {
+    return '';
+  }
+
+  const rowByPrimKey = await mosyFlexQuickSel(
+    MESSAGE_TABLE,
+    'message_type',
+    `WHERE primkey='${decodedPrimKey}'`,
+    'r'
+  );
+
+  return safeText(rowByPrimKey?.message_type);
+}
+
 async function executeSend({ auth, payload, forceResend = false }) {
   const messageId = safeText(payload?.messageid || payload?.NodeId) || magicRandomStr(7);
+  const existingMessageType = await getExistingMessageType({ payload, messageId });
 
   const baseRecord = buildBaseMessageRecord({ auth, payload, messageId });
   const persisted = await persistDraftRecord(baseRecord, payload);
@@ -179,11 +247,18 @@ async function executeSend({ auth, payload, forceResend = false }) {
     (sendEmailNow && emailResult?.status !== 'success');
 
   const sentState = anyAttempted && !anyFailed ? 'sent' : 'failed';
+  const currentSendTypeLabel = toMessageTypeLabel({
+    sms: sendSmsNow,
+    email: sendEmailNow
+  });
+  const persistedMessageType =
+    mergeMessageTypeLabels(existingMessageType, currentSendTypeLabel) || currentSendTypeLabel;
 
   const metrics = estimateSmsMetrics(messageBody, payload?.sms_cost);
 
   await updateSentState(whereStr, {
     sent_state: sentState,
+    message_type: persistedMessageType,
     message_date: mosyRightNow(),
     page_count: metrics.pageCount,
     sms_cost: metrics.smsCost
@@ -196,10 +271,36 @@ async function executeSend({ auth, payload, forceResend = false }) {
       force_resend: forceResend,
       messageid: messageId,
       sent_state: sentState,
+      message_type: persistedMessageType,
       sms: smsResult,
       email: emailResult,
       page_count: metrics.pageCount,
       sms_cost: metrics.smsCost
+    }
+  };
+}
+
+async function executeWhatsAppShare({ auth, payload }) {
+  const messageId = safeText(payload?.messageid || payload?.NodeId) || magicRandomStr(7);
+  const existingMessageType = await getExistingMessageType({ payload, messageId });
+
+  const baseRecord = buildBaseMessageRecord({ auth, payload, messageId });
+  const persisted = await persistDraftRecord(baseRecord, payload);
+  const whereStr = persisted?.where || `messageid='${safeSqlValue(messageId)}'`;
+
+  const mergedMessageType = mergeMessageTypeLabels(existingMessageType, 'whatsapp') || 'WhatsApp';
+
+  await updateSentState(whereStr, {
+    message_type: mergedMessageType,
+    message_date: mosyRightNow()
+  });
+
+  return {
+    success: true,
+    message: 'WhatsApp share tracked successfully',
+    data: {
+      messageid: messageId,
+      message_type: mergedMessageType
     }
   };
 }
@@ -225,6 +326,19 @@ export async function sendMessage({ auth, payload }) {
     return {
       success: false,
       message: error?.message || 'Send operation failed',
+      data: null
+    };
+  }
+}
+
+export async function shareWhatsAppMessage({ auth, payload }) {
+  try {
+    return await executeWhatsAppShare({ auth, payload });
+  } catch (error) {
+    console.error('Error in shareWhatsAppMessage:', error);
+    return {
+      success: false,
+      message: error?.message || 'WhatsApp share tracking failed',
       data: null
     };
   }

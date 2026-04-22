@@ -90,6 +90,7 @@ Key relationships:
       "data2" => "receiver_email",         
       "data3" => "subject",         
       "data5" => "message_details",    
+      "data4" => "message_type",    
       "initials"=>"_clients_client_name_reciver_names:_"
 
   ];

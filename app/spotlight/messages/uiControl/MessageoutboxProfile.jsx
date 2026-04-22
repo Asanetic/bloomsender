@@ -479,8 +479,8 @@ export default function MessageoutboxProfile({ dataIn = {}, dataOut = {} }) {
                 </div>
                 
                 <div className="elforge_message_profile_v1_info_card">
-                  <div className="elforge_message_profile_v1_info_title">{'label:data4'}</div>
-                  <div className="elforge_message_profile_v1_info_value">{'data4'}</div>
+                  <div className="elforge_message_profile_v1_info_title">Message type</div>
+                  <div className="elforge_message_profile_v1_info_value">{messagingNode?.message_type}</div>
                 </div>
                 
               </div>
