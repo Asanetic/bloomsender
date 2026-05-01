@@ -154,56 +154,60 @@ export default function CustomContentCard({ dataIn = {}, dataOut = {} }) {
     }, [nudge_filesNode]);
 
 
-  function downloadPNG(cardRef) {
+    function downloadPNG(cardRef, content) {
+      if (!cardRef.current) return;
+    
+      const date = new Date().toISOString().slice(0,10);
+      const fileName = `${getFileNameFromContent(content)}_${date}`;
+      
+      toPng(cardRef.current, {
+        cacheBust: true,
+        useCORS: true,
+        skipFonts: true,
+        pixelRatio: 2,
+      })
+        .then((dataUrl) => {
+          const link = document.createElement("a");
+          link.download = `${fileName}.png`; // 🔥 dynamic name
+          link.href = dataUrl;
+          link.click();
+        })
+        .catch((err) => {
+          console.error("PNG generation failed:", err);
+        });
+    }
+
+  function downloadPDF(cardRef, content) {
     if (!cardRef.current) return;
   
+    const date = new Date().toISOString().slice(0,10);
+    const fileName = `${getFileNameFromContent(content)}_${date}`;
+
     toPng(cardRef.current, {
       cacheBust: true,
       useCORS: true,
       skipFonts: true,
-      pixelRatio: 2, 
-    })
-      .then((dataUrl) => {
-        const link = document.createElement("a");
-        link.download = `document-${Date.now()}.png`;
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((err) => {
-        console.error("PNG generation failed:", err);
-      });
-  }
-
-
-function downloadPDF(cardRef) {
-  if (!cardRef.current) return;
-
+      pixelRatio: 2,
+    }).then((dataUrl) => {
   
-  toPng(cardRef.current, {
-    cacheBust: true,
-    useCORS: true,
-    skipFonts: true,
-    pixelRatio: 2, 
-  }).then((dataUrl) => {
-
-    const pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "px",
-      format: "a4"
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "px",
+        format: "a4"
+      });
+  
+      const img = new Image();
+      img.src = dataUrl;
+  
+      img.onload = function () {
+        const imgWidth = pdf.internal.pageSize.getWidth();
+        const imgHeight = (img.height * imgWidth) / img.width;
+  
+        pdf.addImage(dataUrl, "PNG", 0, 0, imgWidth, imgHeight);
+        pdf.save(`${fileName}.pdf`); // 🔥 dynamic name
+      };
     });
-    const img = new Image();
-    img.src = dataUrl;
-
-    img.onload = function () {
-      const imgWidth = pdf.internal.pageSize.getWidth();
-      const imgHeight = (img.height * imgWidth) / img.width;
-
-      pdf.addImage(dataUrl, "PNG", 0, 0, imgWidth, imgHeight);
-      pdf.save(`document-${Date.now()}.pdf`);
-    };
-
-  });
-}
+  }
 
 
   return (
@@ -234,14 +238,14 @@ function downloadPDF(cardRef) {
 
   <button type="button"
     className="elforge_nudge_card_crud_btn"
-    onClick={() => downloadPNG(cardRef)}
+    onClick={() => downloadPNG(cardRef, content)}
   >
     ⬇ PNG
   </button>
 
   <button type="button"
     className="elforge_nudge_card_crud_btn"
-    onClick={() => downloadPDF(cardRef)}
+    onClick={() => downloadPDF(cardRef, content)}
   >
     ⬇ PDF
   </button>
@@ -316,6 +320,23 @@ function downloadPDF(cardRef) {
   );
 }
 
+function getFileNameFromContent(content) {
+  const titleBlock = content.find(b => b.type === "title");
+  const paragraphBlock = content.find(b => b.type === "paragraph");
+
+  let title =
+    titleBlock?.text?.trim() ||
+    paragraphBlock?.text?.slice(0, 40) ||
+    "document";
+
+  // 🔥 sanitize (VERY important)
+  title = title
+    .replace(/[^\w\s-]/g, "") // remove weird chars
+    .replace(/\s+/g, "_")     // spaces → underscore
+    .toLowerCase();
+
+  return title;
+}
 
 function createBlock(type) 
 {
