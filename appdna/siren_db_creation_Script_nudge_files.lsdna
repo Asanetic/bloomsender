@@ -1,0 +1,21 @@
+//dna options== Digital Nexus Architecture (DNA)  
+$dna_file_name = "db_creation_Script_nudge_files"; 
+$create_dna = "yes"; //yes | no; 
+$overwrite_dna_file = "yes"; //yes | no 
+//dna options==
+
+
+//======= create table in db
+
+//=========== NUDGE FILES TABLE
+$nudge_files_table_script = "
+`primkey` int(11) PRIMARY KEY AUTO_INCREMENT,
+`record_id` varchar(100) NOT NULL,
+`title` varchar(255) DEFAULT NULL,
+`content` LONGTEXT,
+`created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+`updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+";
+
+$nudge_files_table = 'nudge_files';
+create_table($mysqliconn, $dbname, $nudge_files_table, $nudge_files_table_script);

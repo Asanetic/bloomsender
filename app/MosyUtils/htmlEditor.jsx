@@ -96,7 +96,7 @@ function getRemovedImageSources(oldHtml, newHtml) {
 async function deleteImages(imageUrls = []) {
   for (const src of imageUrls) {
     try {
-      await fetch('/api/editor/deletemedia', {
+      await fetch(`${hiveRoutes.hiveBaseRoute}/api/editor/deletemedia`, {
         method: 'POST',
         body: JSON.stringify({ src }),
         headers: {

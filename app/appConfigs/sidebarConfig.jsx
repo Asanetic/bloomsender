@@ -79,8 +79,10 @@ export const sidebarConfig = [
     icon: "fa fa-lightbulb-o",
     roles: [],
     items: [
-      { label: "All Nudges", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudges/list`, roles: [] },
-      { label: "Create Nudge", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudges/create`, roles: [] },
+      { label: "Payment request", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudgecards/payment`, roles: [] },
+      { label: "Payment ACK", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudgecards/paymentack`, roles: [] },
+      { label: "Custom nudge card", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudgefiles/list`, roles: [] },
+      { label: "Add Custom nudge card", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudgecards/customcontent`, roles: [] },
       { label: "Automated Nudges", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudges/automation`, roles: [] },
       { label: "Revenue Suggestions", href: (routes) => `${hiveRoutes.hiveBaseRoute}/${routes.cms}/nudges/revenue`, roles: [] },
     ],

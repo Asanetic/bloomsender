@@ -19,5 +19,20 @@
         "base": "/api/spotlight/clients/phonebook",
         "delete": "/api/spotlight/clients/delete",
         "import": "/api/spotlight/clients/phonebook/import"
+    },
+    "nudgecards": {
+        "base": "/api/spotlight/nudgecards/nudgecards",
+        "delete": "/api/spotlight/nudgecards/delete",
+        "import": "/api/spotlight/nudgecards/nudgecards/import"
+    },
+    "nudgecardtemplates": {
+        "base": "/api/spotlight/nudgecardtemplates/nudgecardtemplates",
+        "delete": "/api/spotlight/nudgecardtemplates/delete",
+        "import": "/api/spotlight/nudgecardtemplates/nudgecardtemplates/import"
+    },
+    "nudgefiles": {
+        "base": "/api/spotlight/nudgefiles/nudgefiles",
+        "delete": "/api/spotlight/nudgefiles/delete",
+        "import": "/api/spotlight/nudgefiles/nudgefiles/import"
     }
 }

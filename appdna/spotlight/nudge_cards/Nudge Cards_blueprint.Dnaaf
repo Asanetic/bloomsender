@@ -23,7 +23,7 @@ $overwrite_dna_file = "yes"; // yes | no
    ========================= */
 eval(find_snippet("1171"));   // camelCase converter
 
-$table_config_file__ = "../appdna/spotlight/nudge_files/tbl_attr/nudge_files__config.php";
+$table_config_file__ = "../appdna/spotlight/nudge_cards/tbl_attr/nudge_cards_cfg_config.php";
 
 include($table_config_file__);
 

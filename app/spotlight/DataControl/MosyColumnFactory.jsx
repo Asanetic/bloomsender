@@ -12,6 +12,15 @@ const MosyColumnFactory = {
    //-- mosy_sql_roll_back cols--//
   mosy_sql_roll_back: ["roll_bk_key", "table_name", "roll_type", "where_str", "roll_timestamp", "value_entries", "hive_site_id", "hive_site_name"],
 
+   //-- nudge_card_templates cols--//
+  nudge_card_templates: ["record_id", "template_name", "template_type", "html_content", "css_content", "status", "created_at", "hive_site_id", "hive_site_name"],
+
+   //-- nudge_cards cols--//
+  nudge_cards: ["record_id", "client_id", "template_id", "card_title", "card_data", "generated_image_path", "status", "created_at", "hive_site_id", "hive_site_name"],
+
+   //-- nudge_files cols--//
+  nudge_files: ["record_id", "title", "content", "created_at", "updated_at", "hive_site_id", "hive_site_name"],
+
    //-- page_manifest_ cols--//
   page_manifest_: ["manikey", "page_group", "site_id", "page_url", "hive_site_id", "hive_site_name", "project_id", "project_name"],
 

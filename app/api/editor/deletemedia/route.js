@@ -21,10 +21,10 @@ export async function POST(req) {
       try {
         const url = new URL(s, appUrl);
 
-        if (!url.pathname.startsWith('/api/mediaroom')) {
-          results.push({ src: s, status: 'skipped', reason: 'Invalid path' });
-          continue;
-        }
+        // if (!url.pathname.startsWith('/bm/api/mediaroom')) {
+        //   results.push({ src: s, status: 'skipped', reason: 'Invalid path', note: url.pathname });
+        //   continue;
+        // }
 
         const base64Path = url.searchParams.get('media');
 

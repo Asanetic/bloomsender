@@ -52,5 +52,11 @@
     "messagetemplates/profile": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9tZXNzYWdlX3RlbXBsYXRlcy9NZXNzYWdlIFRlbXBsYXRlc19ibHVlcHJpbnQuRG5hYWY=",
     "messagetemplates/list": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9tZXNzYWdlX3RlbXBsYXRlcy9NZXNzYWdlIFRlbXBsYXRlc19ibHVlcHJpbnQuRG5hYWY=",
     "clients/profile": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9jbGllbnRzL1Bob25lYm9va19ibHVlcHJpbnQuRG5hYWY=",
-    "clients/list": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9jbGllbnRzL1Bob25lYm9va19ibHVlcHJpbnQuRG5hYWY="
+    "clients/list": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9jbGllbnRzL1Bob25lYm9va19ibHVlcHJpbnQuRG5hYWY=",
+    "nudgecards/profile": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9udWRnZV9jYXJkcy9OdWRnZSBDYXJkc19ibHVlcHJpbnQuRG5hYWY=",
+    "nudgecards/list": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9udWRnZV9jYXJkcy9OdWRnZSBDYXJkc19ibHVlcHJpbnQuRG5hYWY=",
+    "nudgecardtemplates/profile": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9udWRnZV9jYXJkX3RlbXBsYXRlcy9OdWRnZSBDYXJkIFRlbXBsYXRlc19ibHVlcHJpbnQuRG5hYWY=",
+    "nudgecardtemplates/list": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9udWRnZV9jYXJkX3RlbXBsYXRlcy9OdWRnZSBDYXJkIFRlbXBsYXRlc19ibHVlcHJpbnQuRG5hYWY=",
+    "nudgefiles/profile": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9udWRnZV9maWxlcy9OdWRnZSBGaWxlc19ibHVlcHJpbnQuRG5hYWY=",
+    "nudgefiles/list": "http://localhost/nextv2/mainapps/spotlight/terminal/home?check_autoload=Li4vYXBwZG5hL3Nwb3RsaWdodC9udWRnZV9maWxlcy9OdWRnZSBGaWxlc19ibHVlcHJpbnQuRG5hYWY="
 }

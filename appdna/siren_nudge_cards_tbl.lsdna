@@ -1,0 +1,48 @@
+//dna options== Digital Nexus Architecture (DNA)
+
+$dna_file_name="nudge_cards_tbl"; 
+$create_dna="yes"; //yes | no; 
+$overwrite_dna_file="yes"; //yes | no 
+//dna options==
+
+$nudge_cards_script = "
+`primkey` int(11) PRIMARY KEY AUTO_INCREMENT,
+`record_id` varchar(100) NOT NULL,
+
+`client_id` varchar(100),
+
+`template_id` varchar(100),
+
+`card_title` varchar(255),
+
+`card_data` longtext, 
+
+`generated_image_path` varchar(255),
+
+`status` varchar(50) DEFAULT 'generated',
+
+`created_at` datetime DEFAULT CURRENT_TIMESTAMP
+";
+
+$nudge_cards_table = 'nudge_cards';
+create_table($mysqliconn, $dbname, $nudge_cards_table, $nudge_cards_script);
+
+
+$nudge_templates_script = "
+`primkey` int(11) PRIMARY KEY AUTO_INCREMENT,
+`record_id` varchar(100) NOT NULL,
+
+`template_name` varchar(255) NOT NULL,
+`template_type` varchar(100), 
+
+`html_content` longtext,
+`css_content` longtext,
+
+`status` varchar(50) DEFAULT 'active',
+
+`created_at` datetime DEFAULT CURRENT_TIMESTAMP
+";
+
+$nudge_templates_table = 'nudge_card_templates';
+create_table($mysqliconn, $dbname, $nudge_templates_table, $nudge_templates_script);
+

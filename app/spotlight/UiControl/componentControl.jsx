@@ -73,7 +73,7 @@ function isComponentEnabled(tblName, actionType = 'cu') {
 }
 
 
-export  function DeleteButton({src, tblName, uptoken, stateItemSetters, parentStateSetters, router = null, onDelete}) {
+export  function DeleteButton({src, tblName, uptoken, stateItemSetters, parentStateSetters, router = null, onDelete, extraClass = ''}) {
   if (!uptoken) return null;
 
   const handleClick = () => {
@@ -102,7 +102,7 @@ export  function DeleteButton({src, tblName, uptoken, stateItemSetters, parentSt
   return (
     <button
       type="button"
-      className="medium_btn border border-danger text-danger p-2 mr-3 ml-1 mb-3 hive_profile_nav_del_btn"
+      className={`medium_btn border border-danger text-danger p-2 mr-3 ml-1 mb-3 hive_profile_nav_del_btn ${extraClass}`}
       onClick={handleClick}
     >
       <i className="fa fa-trash"></i> Delete
@@ -144,7 +144,7 @@ export function SubmitButtons({src, tblName, extraClass = '' }) {
             type="submit"
             id={`mp${tblName}_update_btn`}
             name={`mp${tblName}_update_btn`}
-            className="btn btn-primary"
+            className={`btn btn-primary  ${extraClass}`}
           >
             <i className="fa fa-save"></i> Save Changes
           </button>
@@ -166,8 +166,8 @@ export function SubmitButtons({src, tblName, extraClass = '' }) {
           type="submit"
           id={`mp${tblName}_insert_btn`}
           name={`mp${tblName}_insert_btn`}
-          className="btn btn-primary"
-        >
+          className={`btn btn-primary  ${extraClass}`}
+          >
           <i className="fa fa-check"></i> Proceed
         </button>
       )}
