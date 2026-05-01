@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 //access control
 import {MosyAccessControl} from "../../UiControl/MosyAccessControl"
 import {MosyUIGuard } from "../../UiControl/MosyUiGuard"
-import 'suneditor/dist/css/suneditor.min.css';
+
 
 //components
 import { MosyAlertCard, MosyNotify ,closeMosyModal } from  '../../../MosyUtils/ActionModals';
@@ -320,7 +320,7 @@ export default function NudgecardtemplatesProfile({ dataIn = {}, dataOut = {} })
               
               <div className="row justify-content-start col-md-12 p-0 m-0 ">
                 
-                <div className="form-group col-md-6 hive_data_cell">
+                <div className="form-group col-md-12 hive_data_cell">
                   <label >Html Content</label>
                   <MosyHtmlEditor
                   key={`reload - ${nudge_card_templatesNode?.primkey}`}
@@ -335,16 +335,10 @@ export default function NudgecardtemplatesProfile({ dataIn = {}, dataOut = {} })
                   cellOverrides={{additionalClass: "d-none"}}
                   
                   />
+                  <div className="col-md-12  p-0 m-0 ck_raw_content d-none"  id="html_content_toprint">{nudge_card_templatesNode?.html_content || ""}</div>
                   
                 </div>
-                                  
-                <div
-                  className="col-md-6 p-0 m-0 ck_raw_content"
-                  id="html_content_toprint"
-                  dangerouslySetInnerHTML={{
-                    __html: nudge_card_templatesNode?.html_content || ""
-                  }}
-                ></div>
+                
                 
                 <MosySmartField
                 module="nudge_card_templates"

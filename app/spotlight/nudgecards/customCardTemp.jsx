@@ -1,6 +1,8 @@
 "use client";
 
 import { toPng } from "html-to-image";
+import jsPDF from "jspdf";
+
 import { useEffect, useRef, useState } from "react";
 import {
   FaHeading,
@@ -13,7 +15,6 @@ import {
   FaBold, FaItalic, FaUnderline 
 } from "react-icons/fa";
 
-import jsPDF from "jspdf";
 import { deleteUrlParam, mosyFormInputHandler, mosyScrollTo } from "../../MosyUtils/hiveUtils";
 import { useRouter } from "next/navigation";
 
