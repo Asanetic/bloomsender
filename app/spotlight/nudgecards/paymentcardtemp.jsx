@@ -1,47 +1,291 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { toPng } from "html-to-image";
 
 export default function PaymentRequestCard() {
 
   const cardRef = useRef();
 
+  const [itemsTitle, setItemsTitle] = useState("Payment For : ");
+  const [subtitle, setSubTitle] = useState("ITEMS INCLUDED");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [invoiceList, setInvoiceList] = useState([]);
+
+  
   const [form, setForm] = useState({
     clientName: "Tropical Desserts Cafe",
     tel: "0706932793",
     address: "Nyali, Mombasa",
     ref: "TDC/APR/230426/001",
     date: "22 Apr 2026",
-    paymentFor: "Web design services balance",
     amount: "KES 9,000",
     dueDate: "23 Apr 2026",
     accountNumber: "TROPICAL DESSERTS",
     paybill: "409 1961"
   });
+  
+  const [items, setItems] = useState([
+    {
+      description: "Website Design & Development",
+      amount: "KES 9,000"
+    }
+  ]);
+  
+  function getInvoices() {
+    return JSON.parse(
+      localStorage.getItem("payment_requests") || "{}"
+    );
+  }
+  
+  function saveInvoice(
+    nextForm,
+    nextItems,
+    nextItemsTitle,
+    nextSubtitle
+  ) {
+  
+    if (!nextForm.ref) return;
+  
+    const invoices = getInvoices();
+  
+    invoices[nextForm.ref] = {
+      form: nextForm,
+      items: nextItems,
+      itemsTitle: nextItemsTitle,
+      subtitle: nextSubtitle,
+      clientName: nextForm.clientName,
+      updatedAt: Date.now()
+    };
+  
+    localStorage.setItem(
+      "payment_requests",
+      JSON.stringify(invoices)
+    );
+  }
+  
+
+  useEffect(function(){
+
+    refreshInvoiceList();
+  
+  }, []);
+
+  const filteredInvoices = invoiceList.filter(function(item){
+
+    const q = searchTerm.toLowerCase();
+  
+    return (
+      item.ref.toLowerCase().includes(q) ||
+      item.clientName.toLowerCase().includes(q)
+    );
+  
+  });
 
   function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
+
+    const updatedForm = {
+      ...form,
+      [e.target.name]: e.target.value
+    };
+  
+    setForm(updatedForm);
+  
+    if (e.target.name === "ref") {
+      return;
+    }
+  
+    saveInvoice(
+      updatedForm,
+      items,
+      itemsTitle,
+      subtitle
+    );
   }
 
+  function handleRefBlur() {
+
+    if (!form.ref) {
+      return;
+    }
+  
+    const confirmed = window.confirm(
+      'Save invoice as "' + form.ref + '" ?'
+    );
+  
+    if (!confirmed) {
+      return;
+    }
+  
+    saveInvoice(
+      form,
+      items,
+      itemsTitle,
+      subtitle
+    );
+  
+    refreshInvoiceList();
+  }
+  
+  
+  function handleItemsTitleChange(value) {
+  
+    setItemsTitle(value);
+  
+    saveInvoice(
+      form,
+      items,
+      value,
+      subtitle
+    );
+  }
+  
+  function handleSubtitleChange(value) {
+  
+    setSubTitle(value);
+  
+    saveInvoice(
+      form,
+      items,
+      itemsTitle,
+      value
+    );
+  }
+  
+  function updateItem(index, field, value) {
+  
+    const updated = [...items];
+  
+    updated[index][field] = value;
+  
+    setItems(updated);
+  
+    saveInvoice(
+      form,
+      updated,
+      itemsTitle,
+      subtitle
+    );
+  }
+  
+  function addItemRow() {
+  
+    const updated = [
+      ...items,
+      {
+        description: "",
+        amount: ""
+      }
+    ];
+  
+    setItems(updated);
+  
+    saveInvoice(
+      form,
+      updated,
+      itemsTitle,
+      subtitle
+    );
+  }
+  
+  function removeItemRow(index) {
+  
+    const updated = items.filter(function(item, i) {
+      return i !== index;
+    });
+  
+    setItems(updated);
+  
+    saveInvoice(
+      form,
+      updated,
+      itemsTitle,
+      subtitle
+    );
+  }
+  
+  function loadInvoice(ref) {
+  
+    const invoices = getInvoices();
+  
+    const invoice = invoices[ref];
+  
+    if (!invoice) return;
+  
+    setForm(invoice.form);
+    setItems(invoice.items || []);
+    setItemsTitle(invoice.itemsTitle || "");
+    setSubTitle(invoice.subtitle || "");
+  }
+  
+
+  function refreshInvoiceList() {
+
+    const invoices = getInvoices();
+  
+    const list = Object.keys(invoices)
+      .map(function(ref){
+  
+        return {
+          ref: ref,
+          clientName: invoices[ref].clientName || "",
+          updatedAt: invoices[ref].updatedAt || 0
+        };
+  
+      })
+      .sort(function(a,b){
+  
+        return b.updatedAt - a.updatedAt;
+  
+      });
+  
+    setInvoiceList(list);
+  }
+
+
+  
+  const validItems = items.filter(function(item) {
+  
+    return (
+      item.description.trim() !== "" ||
+      item.amount.trim() !== ""
+    );
+  
+  });
+
   function downloadImage() {
-    if (!cardRef.current) return;
+
+    if (!cardRef.current) {
+      return;
+    }
+  
     toPng(cardRef.current, {
       cacheBust: true,
       useCORS: true,
       skipFonts: true,
-      pixelRatio: 2, 
+      pixelRatio: 2
     })
- 
-      .then((dataUrl) => {
-        const link = document.createElement("a");
-        link.download = `payment-${form.clientName}.png`;
-        link.href = dataUrl;
-        link.click();
-      })
-      .catch((err) => {
-        console.error("Image generation failed:", err);
-      });
+    .then(function(dataUrl) {
+  
+      const link = document.createElement("a");
+  
+      link.download =
+        "payment-" + form.clientName + ".png";
+  
+      link.href = dataUrl;
+  
+      link.click();
+  
+    })
+    .catch(function(err) {
+  
+      console.error(
+        "Image generation failed:",
+        err
+      );
+  
+    });
+  
   }
 
   return (
@@ -51,21 +295,142 @@ export default function PaymentRequestCard() {
 
         {/* LEFT → FORM */}
         <div className="col-md-4 p-3 border-end">
+        <div className="position-relative">
 
-          <h5>Edit Card</h5>
+            <input
+              className="form-control mb-2"
+              placeholder="Search Client or Ref"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
 
-          {Object.keys(form).map((key) => (
-            <div className="mb-2" key={key}>
+            {searchTerm.trim() !== "" && (
+              <div
+                className="border bg-white shadow-sm"
+                style={{
+                  maxHeight: "250px",
+                  overflowY: "auto"
+                }}
+              >
+
+                {filteredInvoices.map(function(item){
+
+                  return (
+
+                    <div
+                      key={item.ref}
+                      className="p-2 border-bottom"
+                      style={{
+                        cursor: "pointer"
+                      }}
+                      onClick={function(){
+
+                        loadInvoice(item.ref);
+
+                        setSearchTerm("");
+
+                      }}
+                    >
+
+                      <div>
+                        <strong>{item.clientName}</strong>
+                      </div>
+
+                      <small className="text-muted">
+                        {item.ref}
+                      </small>
+
+                    </div>
+
+                  );
+
+                })}
+
+              </div>
+            )}
+
+            </div>
+          <h5 className="p-3 border-top ">Edit Card</h5>
+          <div className="mb-2">
+            <input
+              type="text"
+              name="ref"
+              value={form.ref || ""}
+              onChange={handleChange}
+              onBlur={handleRefBlur}
+              className="form-control"
+              placeholder="Reference Number"
+            />
+          </div>
+
+          {Object.keys(form)
+            .filter(function(key){
+              return key !== "ref";
+            })
+            .map(function(key){
+
+              return (
+                <input
+                  key={key}
+                  type="text"
+                  name={key}
+                  value={form[key]}
+                  onChange={handleChange}
+                  className="form-control mb-2"
+                />
+              );
+
+            })}
+          <input
+            className="form-control mb-2"
+            value={itemsTitle}
+            onChange={(e) =>
+              handleItemsTitleChange(e.target.value)
+            }
+          />
+          <input
+            className="form-control mb-2"
+            value={subtitle}
+            onChange={(e) =>
+              handleSubtitleChange(e.target.value)
+            }
+          />        
+
+          {items.map((item, index) => (
+            <div className="border p-2 mb-2" key={index}>
+
               <input
-                type="text"
-                name={key}
-                value={form[key]}
-                onChange={handleChange}
-                className="form-control"
-                placeholder={key}
+                className="form-control mb-2"
+                placeholder="Description"
+                value={item.description}
+                onChange={(e) =>
+                  updateItem(index, "description", e.target.value)
+                }
               />
+
+              <input
+                className="form-control"
+                placeholder="Amount"
+                value={item.amount}
+                onChange={(e) =>
+                  updateItem(index, "amount", e.target.value)
+                }
+              />
+          <button
+            className="btn btn-sm btn-danger mt-2"
+            onClick={() => removeItemRow(index)}
+          >
+            Remove
+          </button>
             </div>
           ))}
+
+          <button
+            className="btn btn-outline-primary btn-sm"
+            onClick={addItemRow}
+          >
+            + Add Row
+          </button>
 
           {/* 🔥 DOWNLOAD BUTTON */}
           <button
@@ -123,9 +488,32 @@ export default function PaymentRequestCard() {
                 </div>
 
                 <div className="elforge_mosy_box_v1">
-                  <strong>Payment for:</strong> {form.paymentFor}
+                <h5 className="">{itemsTitle}</h5>
                 </div>
+                  {validItems.length > 0 && (
+                    <div className="elforge_mosy_box_v1 pb-4">
 
+                      <table className="table table-sm mb-0">
+                        <thead>
+                          <tr>
+                            <th>
+                              <h5><b>{subtitle}</b></h5>
+                            </th>
+                            <th width="120"></th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {validItems.map((item, index) => (
+                            <tr key={index}>
+                              <td><h5>{item.description}</h5></td>
+                              <td><h5>{item.amount}</h5></td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
                 <div className="elforge_mosy_amount_bar_v1">
                   <div>
                     <div>Total amount</div>
