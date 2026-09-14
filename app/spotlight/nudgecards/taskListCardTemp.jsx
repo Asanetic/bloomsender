@@ -533,8 +533,8 @@ export default function TaskListCard() {
                     <div className="elforge_mosy_box_v1">
                       <h5>{form.clientBoxLabel}</h5>
                       <div>{form.clientName}</div>
-                      {form.clientTel && <div>Tel: {form.clientTel}</div>}
-                      {form.clientAddress && <div>Address: {form.clientAddress}</div>}
+                      {form.clientTel && <div>{form.clientTel}</div>}
+                      {form.clientAddress && <div>{form.clientAddress}</div>}
                     </div>
                   </div>
 
