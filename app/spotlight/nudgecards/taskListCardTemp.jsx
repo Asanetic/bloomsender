@@ -210,11 +210,18 @@ export default function TaskListCard() {
   }
 
   return (
-    <div className="container-fluid">
-      <div className="row">
+    // 🔥 Fixed-height shell so the two columns below can each own
+    // their own scrollbar instead of the whole page scrolling as
+    // one block. Adjust the 100vh offset if this sits under a navbar
+    // (e.g. "calc(100vh - 64px)").
+    <div className="container-fluid p-0" style={{ height: "100vh" }}>
+      <div className="row g-0" style={{ height: "100%" }}>
 
-        {/* LEFT → FORM */}
-        <div className="col-md-4 p-3 border-end">
+        {/* LEFT → FORM (scrolls on its own) */}
+        <div
+          className="col-md-4 p-3 border-end"
+          style={{ height: "100%", overflowY: "auto" }}
+        >
           <h5>Edit Task List</h5>
 
           {/* 🔥 SAVED TASK LISTS */}
@@ -492,146 +499,151 @@ export default function TaskListCard() {
 
         </div>
 
-        {/* RIGHT → CARD */}
-        <div className="col-md-8 row justify-content-center">
+        {/* RIGHT → CARD (scrolls on its own, independent of the form) */}
+        <div
+          className="col-md-8 p-3"
+          style={{ height: "100%", overflowY: "auto" }}
+        >
+          <div className="row justify-content-center g-0">
 
-          {/* 👇 ONLY THIS gets exported */}
-          <div className="col-md-12 p-0 m-0" style={{ height: "auto", backgroundColor: "#fff" }}>
+            {/* 👇 ONLY THIS gets exported */}
+            <div className="col-md-12 p-0 m-0" style={{ height: "auto", backgroundColor: "#fff" }}>
 
-            <div ref={cardRef} className="elforge_mosy_invoice_v1" style={{ height: "auto", minHeight: 0, backgroundColor: "#fff" }}>
-              <div className="elforge_mosy_invoice_card_v1" style={{ height: "auto", minHeight: 0 }}>
+              <div ref={cardRef} className="elforge_mosy_invoice_v1" style={{ height: "auto", minHeight: 0, backgroundColor: "#fff" }}>
+                <div className="elforge_mosy_invoice_card_v1" style={{ height: "auto", minHeight: 0 }}>
 
-                {/* HEADER — reuses existing global classes */}
-                <div className="elforge_header">
-                  <div className="elforge_logo">
-                    <img
-                      src="/bm/logo/asaneticlogo.png"
-                      style={{ width: "auto", height: "120px" }}
-                    />
-                  </div>
+                  {/* HEADER — reuses existing global classes */}
+                  <div className="elforge_header">
+                    <div className="elforge_logo">
+                      <img
+                        src="/bm/logo/asaneticlogo.png"
+                        style={{ width: "auto", height: "120px" }}
+                      />
+                    </div>
 
-                  <div
-                    className="elforge_contact h5 pr-3 pt-4"
-                    style={{ borderRight: "15px solid #f4b400" }}
-                  >
-                    {form.companyTel}<br/>
-                    {form.companyWebsite}<br/>
-                    {form.companyEmail}
-                  </div>
-                </div>
-                <hr style={{ borderColor: "#f4b400" }} />
-
-                {/* TITLE — fully editable, nothing hardcoded */}
-                <div className="elforge_mosy_title_v1 h1">{form.title}</div>
-                {form.subtitle && (
-                  <div className="elforge_tasklist_subtitle_v1">{form.subtitle}</div>
-                )}
-
-                {/* CLIENT / PERIOD — same box class as BILL TO / INVOICE DETAILS */}
-                <div className="row m-0 p-0">
-                  <div className="col-md-6 p-0 m-0">
-                    <div className="elforge_mosy_box_v1">
-                      <h5>{form.clientBoxLabel}</h5>
-                      <div>{form.clientName}</div>
-                      {form.clientTel && <div>{form.clientTel}</div>}
-                      {form.clientAddress && <div>{form.clientAddress}</div>}
+                    <div
+                      className="elforge_contact h5 pr-3 pt-4"
+                      style={{ borderRight: "15px solid #f4b400" }}
+                    >
+                      {form.companyTel}<br/>
+                      {form.companyWebsite}<br/>
+                      {form.companyEmail}
                     </div>
                   </div>
+                  <hr style={{ borderColor: "#f4b400" }} />
 
+                  {/* TITLE — fully editable, nothing hardcoded */}
+                  <div className="elforge_mosy_title_v1 h1">{form.title}</div>
+                  {form.subtitle && (
+                    <div className="elforge_tasklist_subtitle_v1">{form.subtitle}</div>
+                  )}
 
-                  <div className="col-md-6">
-                    <div className="elforge_mosy_box_v1">
-                      <h5>{form.periodBoxLabel}</h5>
-                      <div>{form.period}</div>
-                    </div>
-                  </div>
-                </div>
-
-                {form.introNote && (
-                  <div className="elforge_tasklist_note_v1">{form.introNote}</div>
-                )}
-
-                {/* SECTIONS — each one a labeled, two-column row list */}
-                {sections.map((section, sIndex) => {
-                  const validRows = section.rows.filter(
-                    (r) => r.col1.trim() !== "" || r.col2.trim() !== ""
-                  );
-
-                  if (validRows.length === 0) return null;
-
-                  return (
-                    <div className="elforge_tasklist_section_v1" key={sIndex}>
-                      <div className="elforge_tasklist_head_v1">{section.label}</div>
-
-                      <div className="elforge_tasklist_rows_v1">
-                        {validRows.map((row, rIndex) => (
-                          <div
-                            className="elforge_tasklist_row_v1"
-                            key={rIndex}
-                            style={!row.col2 ? { display: "block" } : undefined}
-                          >
-                            <div className="elforge_tasklist_col1_v1">{row.col1}</div>
-                            {row.col2 && (
-                              <div className="elforge_tasklist_col2_v1">{row.col2}</div>
-                            )}
-                          </div>
-                        ))}
+                  {/* CLIENT / PERIOD — same box class as BILL TO / INVOICE DETAILS */}
+                  <div className="row m-0 p-0">
+                    <div className="col-md-6 p-0 m-0">
+                      <div className="elforge_mosy_box_v1">
+                        <h5>{form.clientBoxLabel}</h5>
+                        <div>{form.clientName}</div>
+                        {form.clientTel && <div>{form.clientTel}</div>}
+                        {form.clientAddress && <div>{form.clientAddress}</div>}
                       </div>
                     </div>
-                  );
-                })}
 
-                {form.highlightValue && (
-                  <div
-                    className="elforge_tasklist_highlight_v1"
-                    style={
-                      !form.highlightValue2
-                        ? { justifyContent: "center", textAlign: "center" }
-                        : undefined
-                    }
-                  >
-                    <div>
-                      {form.highlightLabel && (
-                        <div className="elforge_tasklist_highlight_label_v1">
-                          {form.highlightLabel}
+
+                    <div className="col-md-6">
+                      <div className="elforge_mosy_box_v1">
+                        <h5>{form.periodBoxLabel}</h5>
+                        <div>{form.period}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {form.introNote && (
+                    <div className="elforge_tasklist_note_v1">{form.introNote}</div>
+                  )}
+
+                  {/* SECTIONS — each one a labeled, two-column row list */}
+                  {sections.map((section, sIndex) => {
+                    const validRows = section.rows.filter(
+                      (r) => r.col1.trim() !== "" || r.col2.trim() !== ""
+                    );
+
+                    if (validRows.length === 0) return null;
+
+                    return (
+                      <div className="elforge_tasklist_section_v1" key={sIndex}>
+                        <div className="elforge_tasklist_head_v1">{section.label}</div>
+
+                        <div className="elforge_tasklist_rows_v1">
+                          {validRows.map((row, rIndex) => (
+                            <div
+                              className="elforge_tasklist_row_v1"
+                              key={rIndex}
+                              style={!row.col2 ? { display: "block" } : undefined}
+                            >
+                              <div className="elforge_tasklist_col1_v1">{row.col1}</div>
+                              {row.col2 && (
+                                <div className="elforge_tasklist_col2_v1">{row.col2}</div>
+                              )}
+                            </div>
+                          ))}
                         </div>
-                      )}
-                      <div className="elforge_tasklist_highlight_value_v1">
-                        {form.highlightValue}
                       </div>
-                    </div>
+                    );
+                  })}
 
-                    {form.highlightValue2 && (
-                      <div style={{ textAlign: "right" }}>
-                        {form.highlightLabel2 && (
-                          <div className="elforge_tasklist_highlight_value_v2_label">
-                            {form.highlightLabel2}
+                  {form.highlightValue && (
+                    <div
+                      className="elforge_tasklist_highlight_v1"
+                      style={
+                        !form.highlightValue2
+                          ? { justifyContent: "center", textAlign: "center" }
+                          : undefined
+                      }
+                    >
+                      <div>
+                        {form.highlightLabel && (
+                          <div className="elforge_tasklist_highlight_label_v1">
+                            {form.highlightLabel}
                           </div>
                         )}
-                        <div className="elforge_tasklist_highlight_value_v2">
-                          {form.highlightValue2}
+                        <div className="elforge_tasklist_highlight_value_v1">
+                          {form.highlightValue}
                         </div>
                       </div>
-                    )}
-                  </div>
-                )}
 
-                {form.closingNote && (
-                  <div className="elforge_tasklist_note_v1 elforge_tasklist_note_bold_v1">
-                    {form.closingNote}
-                  </div>
-                )}
+                      {form.highlightValue2 && (
+                        <div style={{ textAlign: "right" }}>
+                          {form.highlightLabel2 && (
+                            <div className="elforge_tasklist_highlight_value_v2_label">
+                              {form.highlightLabel2}
+                            </div>
+                          )}
+                          <div className="elforge_tasklist_highlight_value_v2">
+                            {form.highlightValue2}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
-                {/* FOOTER — reuses existing footer class, text is editable */}
-                <div className="elforge_mosy_footer_v1">
-                  {form.footerText}
+                  {form.closingNote && (
+                    <div className="elforge_tasklist_note_v1 elforge_tasklist_note_bold_v1">
+                      {form.closingNote}
+                    </div>
+                  )}
+
+                  {/* FOOTER — reuses existing footer class, text is editable */}
+                  <div className="elforge_mosy_footer_v1">
+                    {form.footerText}
+                  </div>
+
                 </div>
-
               </div>
+
             </div>
 
           </div>
-
         </div>
 
       </div>
