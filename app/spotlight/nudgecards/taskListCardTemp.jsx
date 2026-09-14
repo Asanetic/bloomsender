@@ -527,7 +527,6 @@ export default function TaskListCard() {
                   <div className="elforge_tasklist_subtitle_v1">{form.subtitle}</div>
                 )}
 
-
                 {/* CLIENT / PERIOD — same box class as BILL TO / INVOICE DETAILS */}
                 <div className="row m-0 p-0">
                   <div className="col-md-6 p-0 m-0">
@@ -539,7 +538,7 @@ export default function TaskListCard() {
                     </div>
                   </div>
 
-                  
+
                   <div className="col-md-6">
                     <div className="elforge_mosy_box_v1">
                       <h5>{form.periodBoxLabel}</h5>
