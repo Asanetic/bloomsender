@@ -314,6 +314,17 @@ export default function PaymentRequestCard() {
   
   }
 
+  // 🔥 These four live in `form` (so handleChange/save/load keep
+  // working the same way) but get their own explicit Label/Value
+  // inputs below instead of falling into the generic mapped list —
+  // same pattern as the task list's Highlight Bar section.
+  const amountBadgeKeys = [
+    "amountLabel",
+    "amount",
+    "dueDateLabel",
+    "dueDate"
+  ];
+
   return (
     // 🔥 Same fixed-height shell as the task list card: caps the
     // layout at the viewport so the form and the preview each get
@@ -398,7 +409,7 @@ export default function PaymentRequestCard() {
 
           {Object.keys(form)
             .filter(function(key){
-              return key !== "ref";
+              return key !== "ref" && amountBadgeKeys.indexOf(key) === -1;
             })
             .map(function(key){
 
@@ -464,6 +475,42 @@ export default function PaymentRequestCard() {
           >
             + Add Row
           </button>
+
+          {/* 🔥 AMOUNT BADGE — explicit label/value pairs, same
+              pattern as the task list's Highlight Bar */}
+          <h6 className="mt-3 mb-2 text-muted">Amount Badge</h6>
+          <div className="d-flex gap-2 mb-2">
+            <input
+              className="form-control"
+              name="amountLabel"
+              value={form.amountLabel}
+              onChange={handleChange}
+              placeholder="Label, e.g. Total amount"
+            />
+            <input
+              className="form-control"
+              name="amount"
+              value={form.amount}
+              onChange={handleChange}
+              placeholder="Value, e.g. KES 9,000"
+            />
+          </div>
+          <div className="d-flex gap-2 mb-3">
+            <input
+              className="form-control"
+              name="dueDateLabel"
+              value={form.dueDateLabel}
+              onChange={handleChange}
+              placeholder="Label, e.g. Due Date"
+            />
+            <input
+              className="form-control"
+              name="dueDate"
+              value={form.dueDate}
+              onChange={handleChange}
+              placeholder="Value, e.g. 23 Apr 2026"
+            />
+          </div>
 
           {/* 🔥 FOOTNOTE — shown just below the amount/due-date badge, optional */}
           <h6 className="mt-3 mb-2 text-muted">Footnote (optional)</h6>
@@ -673,8 +720,8 @@ export default function PaymentRequestCard() {
       <style jsx>{`
         .elforge_payment_footnote_v1 {
           text-align: center;
-          font-weight: 600;
-          font-size: 15px;
+          font-weight: 700;
+          font-size: 20px;
           color: #6b5323;
           padding: 4px 30px 22px 30px;
         }
