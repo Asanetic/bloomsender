@@ -289,12 +289,19 @@ export default function PaymentRequestCard() {
   }
 
   return (
-    <div className="container-fluid">
+    // 🔥 Same fixed-height shell as the task list card: caps the
+    // layout at the viewport so the form and the preview each get
+    // their own scrollbar instead of one long page scroll. Swap
+    // 100vh for e.g. "calc(100vh - 64px)" if this sits under a navbar.
+    <div className="container-fluid p-0" style={{ height: "100vh" }}>
 
-      <div className="row">
+      <div className="row g-0" style={{ height: "100%" }}>
 
-        {/* LEFT → FORM */}
-        <div className="col-md-4 p-3 border-end">
+        {/* LEFT → FORM (scrolls on its own) */}
+        <div
+          className="col-md-4 p-3 border-end"
+          style={{ height: "100%", overflowY: "auto" }}
+        >
         <div className="position-relative">
 
             <input
@@ -442,8 +449,12 @@ export default function PaymentRequestCard() {
 
         </div>
 
-        {/* RIGHT → CARD */}
-        <div className="col-md-8  row justify-content-center">
+        {/* RIGHT → CARD (scrolls on its own, independent of the form) */}
+        <div
+          className="col-md-8 p-3"
+          style={{ height: "100%", overflowY: "auto" }}
+        >
+          <div className="row justify-content-center g-0">
 
           {/* 👇 ONLY THIS gets exported */}
           <div ref={cardRef} className="col-md-12 p-0 m-0">
@@ -473,8 +484,8 @@ export default function PaymentRequestCard() {
                     <div className="elforge_mosy_box_v1">
                       <h5>BILL TO</h5>
                       <div>Name: {form.clientName}</div>
-                      <div>Tel: {form.tel}</div>
-                      <div>Address: {form.address}</div>
+                      {form.tel && <div>Tel: {form.tel}</div>}
+                      {form.address && <div>Address: {form.address}</div>}
                     </div>
                   </div>
 
@@ -604,6 +615,7 @@ export default function PaymentRequestCard() {
 
           </div>
 
+          </div>
         </div>
 
       </div>
