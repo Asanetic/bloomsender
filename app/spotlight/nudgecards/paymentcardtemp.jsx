@@ -483,9 +483,9 @@ export default function PaymentRequestCard() {
                   <div className="col-md-6 p-0 m-0 ">
                     <div className="elforge_mosy_box_v1">
                       <h5>BILL TO</h5>
-                      <div>Name: {form.clientName}</div>
-                      {form.tel && <div>Tel: {form.tel}</div>}
-                      {form.address && <div>Address: {form.address}</div>}
+                      <div> {form.clientName}</div>
+                      {form.tel && <div> {form.tel}</div>}
+                      {form.address && <div> {form.address}</div>}
                     </div>
                   </div>
 
