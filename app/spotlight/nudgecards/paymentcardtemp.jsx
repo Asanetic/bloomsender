@@ -724,6 +724,7 @@ export default function PaymentRequestCard() {
           font-size: 20px;
           color: #6b5323;
           padding: 4px 30px 22px 30px;
+          white-space: pre-line;
         }
       `}</style>
     </div>
