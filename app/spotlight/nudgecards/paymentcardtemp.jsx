@@ -9,6 +9,7 @@ export default function PaymentRequestCard() {
 
   const [itemsTitle, setItemsTitle] = useState("Payment For : ");
   const [subtitle, setSubTitle] = useState("ITEMS INCLUDED");
+  const [footnote, setFootnote] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [invoiceList, setInvoiceList] = useState([]);
 
@@ -19,7 +20,9 @@ export default function PaymentRequestCard() {
     address: "Nyali, Mombasa",
     ref: "TDC/APR/230426/001",
     date: "22 Apr 2026",
+    amountLabel: "Total amount",
     amount: "KES 9,000",
+    dueDateLabel: "Due Date",
     dueDate: "23 Apr 2026",
     accountNumber: "TROPICAL DESSERTS",
     paybill: "409 1961"
@@ -42,7 +45,8 @@ export default function PaymentRequestCard() {
     nextForm,
     nextItems,
     nextItemsTitle,
-    nextSubtitle
+    nextSubtitle,
+    nextFootnote
   ) {
   
     if (!nextForm.ref) return;
@@ -54,6 +58,7 @@ export default function PaymentRequestCard() {
       items: nextItems,
       itemsTitle: nextItemsTitle,
       subtitle: nextSubtitle,
+      footnote: nextFootnote,
       clientName: nextForm.clientName,
       updatedAt: Date.now()
     };
@@ -99,7 +104,8 @@ export default function PaymentRequestCard() {
       updatedForm,
       items,
       itemsTitle,
-      subtitle
+      subtitle,
+      footnote
     );
   }
 
@@ -121,7 +127,8 @@ export default function PaymentRequestCard() {
       form,
       items,
       itemsTitle,
-      subtitle
+      subtitle,
+      footnote
     );
   
     refreshInvoiceList();
@@ -136,7 +143,8 @@ export default function PaymentRequestCard() {
       form,
       items,
       value,
-      subtitle
+      subtitle,
+      footnote
     );
   }
   
@@ -148,6 +156,20 @@ export default function PaymentRequestCard() {
       form,
       items,
       itemsTitle,
+      value,
+      footnote
+    );
+  }
+
+  function handleFootnoteChange(value) {
+
+    setFootnote(value);
+
+    saveInvoice(
+      form,
+      items,
+      itemsTitle,
+      subtitle,
       value
     );
   }
@@ -164,7 +186,8 @@ export default function PaymentRequestCard() {
       form,
       updated,
       itemsTitle,
-      subtitle
+      subtitle,
+      footnote
     );
   }
   
@@ -184,7 +207,8 @@ export default function PaymentRequestCard() {
       form,
       updated,
       itemsTitle,
-      subtitle
+      subtitle,
+      footnote
     );
   }
   
@@ -200,7 +224,8 @@ export default function PaymentRequestCard() {
       form,
       updated,
       itemsTitle,
-      subtitle
+      subtitle,
+      footnote
     );
   }
   
@@ -216,6 +241,7 @@ export default function PaymentRequestCard() {
     setItems(invoice.items || []);
     setItemsTitle(invoice.itemsTitle || "");
     setSubTitle(invoice.subtitle || "");
+    setFootnote(invoice.footnote || "");
   }
   
 
@@ -439,6 +465,15 @@ export default function PaymentRequestCard() {
             + Add Row
           </button>
 
+          {/* 🔥 FOOTNOTE — shown just below the amount/due-date badge, optional */}
+          <h6 className="mt-3 mb-2 text-muted">Footnote (optional)</h6>
+          <textarea
+            className="form-control mb-3"
+            value={footnote}
+            onChange={(e) => handleFootnoteChange(e.target.value)}
+            placeholder="e.g. A 50% deposit secures your slot on our calendar"
+          />
+
           {/* 🔥 DOWNLOAD BUTTON */}
           <button
             className="btn btn-dark w-100 mt-3"
@@ -527,17 +562,24 @@ export default function PaymentRequestCard() {
                   )}
                 <div className="elforge_mosy_amount_bar_v1">
                   <div>
-                    <div>Total amount</div>
+                    <div>{form.amountLabel}</div>
                     <div className="elforge_mosy_amount_v1 h1">
                       {form.amount}
                     </div>
                   </div>
 
                   <div className="">
-                    <div>Due Date</div>
+                    <div>{form.dueDateLabel}</div>
                     <div className="h3">{form.dueDate}</div>
                   </div>
                 </div>
+
+                {/* 🔥 FOOTNOTE — optional, sits right under the amount badge */}
+                {footnote && (
+                  <div className="elforge_payment_footnote_v1">
+                    {footnote}
+                  </div>
+                )}
 
                 <div className="elforge_mosy_mpesa_v1 row justify-content-center m-0 p-0 ">
                   <h5 className="col-md-12">M-PESA PAYBILL</h5>
@@ -620,6 +662,23 @@ export default function PaymentRequestCard() {
 
       </div>
 
+      {/*
+        elforge_payment_footnote_v1 is new — the rest of this card's
+        classes (elforge_mosy_amount_bar_v1, elforge_mosy_box_v1, etc.)
+        already live in the global stylesheet alongside the other
+        payment-card classes. Move this one there too whenever
+        convenient; it's kept local for now just like the task list
+        card keeps its own new classes local.
+      */}
+      <style jsx>{`
+        .elforge_payment_footnote_v1 {
+          text-align: center;
+          font-weight: 600;
+          font-size: 15px;
+          color: #6b5323;
+          padding: 4px 30px 22px 30px;
+        }
+      `}</style>
     </div>
   );
 }
